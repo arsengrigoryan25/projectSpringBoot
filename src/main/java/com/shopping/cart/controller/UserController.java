@@ -1,27 +1,33 @@
 package com.shopping.cart.controller;
 
-import com.shopping.cart.domain.dto.ShoppingCart;
-import com.shopping.cart.domain.dto.User;
+import com.shopping.cart.domain.dto.UserDto;
+import com.shopping.cart.domain.entity.UserEntity;
+import com.shopping.cart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
+import org.springframework.web.bind.annotation.*;
+@RequestMapping("/user")
 @RestController
 public class UserController {
 
-    private final UserController userController;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserController userController) {
-        this.userController = userController;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @RequestMapping("/registration")
-    public void addUser(User user){
-        userController.addUser(user);
+    @PostMapping("/create")
+    public String createUser(@RequestBody UserDto userDto){
+        return userService.creatUser(userDto);
     }
 
+    @GetMapping("/find")
+    public Iterable<UserEntity> getAllUsers(){
+        return userService.getAllUsers();
+    }
 
-
+    @DeleteMapping("/delete")
+    public String deleteUser(@RequestParam Integer id){
+        return userService.deleteUser(id);
+    }
 }

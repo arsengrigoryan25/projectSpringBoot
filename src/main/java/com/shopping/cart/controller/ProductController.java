@@ -1,78 +1,57 @@
 package com.shopping.cart.controller;
 
-import com.shopping.cart.domain.dto.Product;
-import com.shopping.cart.domain.dto.ShoppingCart;
+import com.shopping.cart.domain.dto.ProductDto;
+import com.shopping.cart.domain.entity.ProductEntity;
+import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.service.ProductService;
-import com.shopping.cart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
-
+@RequestMapping("/product")
 @RestController
 public class ProductController {
 
     private final ProductService productService;
-    private final ShoppingCartService shoppingCartService;
 
     @Autowired
-    public ProductController(ProductService productService, ShoppingCartService shoppingCartService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.shoppingCartService = shoppingCartService;
     }
 
-    @RequestMapping("/")
-    public String main() {
-        return "main";
-    }
-
-    @RequestMapping("/product/create")
-    public String  createProduct(@RequestParam String name, @RequestParam String productType) {
-        ModelAndView modelAndView = new ModelAndView("createProduct");
-        Product product = new Product();
-        product.setAddedDate(new Date());
-        try {
-            productService.creatProducts(product);
-        } catch (Exception e) {
-//            List<ProductTypeEntity> typeProducts = typeProductsRepository.findAll();
-//            modelAndView.addObject("productType", typeProducts);
-//            modelAndView.addObject("productEntity", entity);
-//            modelAndView.addObject("error", "Այս տվյալներով ապրանք արդեն գրանցված է");
-        }
+    @PostMapping("/create")
+    public String createProduct(@RequestBody ProductDto productDto) {
+        productDto.setAddedDate(new Date());
+        productService.creatProduct(productDto);
         return "";
     }
 
-    @RequestMapping("/product/delete")
-    public String  deleteProduct(@RequestParam String id ) {
-        try {
-            productService.deleteProduct(id);
-        } catch (Exception e) {
-//            List<ProductTypeEntity> typeProducts = typeProductsRepository.findAll();
-//            modelAndView.addObject("productType", typeProducts);
-//            modelAndView.addObject("productEntity", entity);
-//            modelAndView.addObject("error", "Այս տվյալներով ապրանք արդեն գրանցված է");
-            return "";
-        }
+    @PutMapping("/update")
+    public String updateProducts(@RequestBody ProductDto productDto) {
+        productService.updateProducts(productDto);
         return "";
     }
 
-    @RequestMapping("/product/update")
-    public String updateProducts(@RequestParam String id ) {
-        ModelAndView modelAndView = new ModelAndView("updateProducts");
-        Product product = new Product();
-        try {
-            productService.updateProducts(product);
-        } catch (Exception e) {
-//            List<ProductTypeEntity> typeProducts = typeProductsRepository.findAll();
-//            modelAndView.addObject("productType", typeProducts);
-//            modelAndView.addObject("productEntity", entity);
-//            modelAndView.addObject("error", "Այս տվյալներով ապրանք արդեն գրանցված է");
-            return "";
-        }
-        return "";
+    @GetMapping("/getAll")
+    public Iterable<ProductEntity> getAllProducts() {
+        return productService.getAllProducts();
+    }
 
+    @PostMapping("/getByFilter")
+    public List<ProductEntity> searchProductsByFilter(@RequestBody ProductFilter filter){
+        return productService.searchProductsByFilter(filter);
+    }
+
+    @PostMapping("/sortProducts/{sortBy}")
+    public List<ProductEntity> sortProducts(@PathVariable String sortBy){
+        return productService.sortProducts(sortBy);
+    }
+
+    @DeleteMapping("/{itemId}/delete")
+    public String deleteProduct(@PathVariable Integer itemId) {
+        productService.deleteProduct(itemId);
+        return "";
     }
 }

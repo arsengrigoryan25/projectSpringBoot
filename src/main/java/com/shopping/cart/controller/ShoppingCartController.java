@@ -1,18 +1,12 @@
 package com.shopping.cart.controller;
 
-import com.shopping.cart.domain.dto.Product;
-import com.shopping.cart.domain.dto.ShoppingCart;
-import com.shopping.cart.service.ProductService;
+import com.shopping.cart.domain.dto.ShoppingCartDto;
+import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
-
+@RequestMapping("/shopping-carts")
 @RestController
 public class ShoppingCartController {
 
@@ -23,11 +17,21 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
     }
 
-    @RequestMapping("/shoppingCart/addProductInUserCart")
-    public void addProductInUserCart(){
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCartService.addProductInUserCart(shoppingCart);
+    @PostMapping("/addProductInUserCart")
+    public void addProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
+        shoppingCartService.addProductInUserCart(shoppingCartDto);
     }
+
+    @PostMapping("/searchProductInUserCart")
+    public void searchProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
+        shoppingCartService.addProductInUserCart(shoppingCartDto);
+    }
+
+    public void deleteProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
+//        shoppingCartService.(shoppingCartDto);
+    }
+
+    public void  searchProductsByFilter(ProductFilter filter){}
 
 
 

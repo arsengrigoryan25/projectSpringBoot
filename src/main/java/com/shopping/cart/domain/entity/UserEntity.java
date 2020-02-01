@@ -1,7 +1,6 @@
 package com.shopping.cart.domain.entity;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,9 +16,9 @@ public class UserEntity {
     private String email;
     private String password;
 
-//    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Set<ShoppingCartEntity> shoppingCartEntitiesList;
-
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ShoppingCartEntity> shoppingCartEntities;
+//TODO equals hashcode
     public UserEntity() {
     }
 

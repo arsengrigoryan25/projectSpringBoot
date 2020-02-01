@@ -3,7 +3,7 @@ package com.shopping.cart.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Product implements Serializable {
+public class ProductDto implements Serializable {
 
 	private static final long serialVersionUID = 5776458177054327256L;
 	private Integer id;
@@ -14,8 +14,8 @@ public class Product implements Serializable {
 	private Date updatedDate;
 	private Integer countInStock;
 
-	public Product() { }
-	public Product(Integer id, String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
+	public ProductDto() { }
+	public ProductDto(Integer id, String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
 		this.id = id;
 		this.name = name;
 		this.type = type;

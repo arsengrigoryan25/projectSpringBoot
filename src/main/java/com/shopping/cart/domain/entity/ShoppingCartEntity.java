@@ -9,21 +9,21 @@ public class ShoppingCartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String userId;
-    private String productId;
-    private String quantity;
+    private Integer userId;
+    private Integer productId;
+    private Integer quantity;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id", insertable = false, updatable = false,  foreignKey = @ForeignKey(name="id"))
-//    private UserEntity users;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private UserEntity users;
 
-//    @OneToOne(mappedBy = "shoppingCart", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private ProductEntity productEntity;
+    @OneToOne(mappedBy = "shoppingCart", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private ProductEntity productEntity;
 
     public ShoppingCartEntity() {
     }
 
-    public ShoppingCartEntity(String userId, String productId, String quantity) {
+    public ShoppingCartEntity(Integer userId, Integer productId, Integer quantity) {
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
@@ -37,27 +37,27 @@ public class ShoppingCartEntity {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

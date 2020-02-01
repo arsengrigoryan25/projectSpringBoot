@@ -1,6 +1,6 @@
 package com.shopping.cart.service;
 
-import com.shopping.cart.domain.dto.ShoppingCart;
+import com.shopping.cart.domain.dto.ShoppingCartDto;
 import com.shopping.cart.domain.entity.ShoppingCartEntity;
 import com.shopping.cart.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ public class ShoppingCartService {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 
-    public void addProductInUserCart(ShoppingCart shoppingCart) {
-        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCart.getUserId(), shoppingCart.getProductId(), shoppingCart.getQuantity());
+    public void addProductInUserCart(ShoppingCartDto shoppingCartDto) {
+        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId(), shoppingCartDto.getQuantity());
         shoppingCartRepository.save(entity);
     }
 
-    public void deleteProductInUserCart(ShoppingCart shoppingCart) {
-        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCart.getUserId(), shoppingCart.getProductId(), shoppingCart.getQuantity());
+    public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto) {
+        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId(), shoppingCartDto.getQuantity());
         shoppingCartRepository.delete(entity);
     }
 

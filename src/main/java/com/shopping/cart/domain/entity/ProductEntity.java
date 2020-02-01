@@ -17,9 +17,9 @@ public class ProductEntity {
     private Date updatedDate;
     private Integer countInStock;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name="product_id"))
-//    private ShoppingCartEntity shoppingCart;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private ShoppingCartEntity shoppingCart;
 
     public ProductEntity() { }
 

@@ -3,7 +3,7 @@ package com.shopping.cart.domain.dto;
 import javax.persistence.Column;
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserDto implements Serializable {
 
     public enum Role{
         ROLE_ADMIN, ROLE_USER
@@ -17,8 +17,8 @@ public class User implements Serializable {
     private String email ;
     private String password ;
 
-    public User() { }
-    public User(Integer id, String name, String surname, String email, String password) {
+    public UserDto() { }
+    public UserDto(Integer id, String name, String surname, String email, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;

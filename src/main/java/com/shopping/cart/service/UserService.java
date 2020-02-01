@@ -1,31 +1,42 @@
 package com.shopping.cart.service;
 
-import com.shopping.cart.domain.dto.User;
+import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.UserEntity;
 import com.shopping.cart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
 
-    @Autowired// Autowired te Inject
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public void creatUser(User user) {
-        UserEntity entity = new UserEntity(user.getName(), user.getSurname(), user.getEmail(), user.getPassword());
-        try{
-            userRepository.save(entity);  //TODO petqa handle arvi user-i linelu case
-        }catch (Exception e){
-
+    public String creatUser(UserDto dto) {
+        UserEntity entity = new UserEntity(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getPassword());
+        try {
+            userRepository.save(entity);
+        } catch (DataIntegrityViolationException e) {
+            return "Tvyal email-ov user ka";
         }
+        return "User is added";
     }
 
-    public void deleteUser(String id) {
-        Integer id1 = new Integer(id);
-        userRepository.deleteById(id1);
+    public Iterable<UserEntity> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public String deleteUser(Integer id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            return "User not found";
+        }
+        return "User is deleted";
     }
 }
