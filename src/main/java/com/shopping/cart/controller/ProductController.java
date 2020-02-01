@@ -3,6 +3,7 @@ package com.shopping.cart.controller;
 import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
 import com.shopping.cart.filter.ProductFilter;
+import com.shopping.cart.filter.SortFilter;
 import com.shopping.cart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +45,9 @@ public class ProductController {
         return productService.searchProductsByFilter(filter);
     }
 
-    @PostMapping("/sortProducts/{sortBy}")
-    public List<ProductEntity> sortProducts(@PathVariable String sortBy){
-        return productService.sortProducts(sortBy);
+    @PostMapping("/sortProducts")
+    public List<ProductEntity> sortProducts(@RequestBody SortFilter filter){
+        return productService.sortProducts(filter);
     }
 
     @DeleteMapping("/{itemId}/delete")

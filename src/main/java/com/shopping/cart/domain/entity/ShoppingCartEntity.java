@@ -17,8 +17,9 @@ public class ShoppingCartEntity {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private UserEntity users;
 
-    @OneToOne(mappedBy = "shoppingCart", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ProductEntity productEntity;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private ProductEntity product;
 
     public ShoppingCartEntity() {
     }

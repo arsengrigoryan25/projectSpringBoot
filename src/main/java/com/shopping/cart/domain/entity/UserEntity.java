@@ -18,6 +18,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ShoppingCartEntity> shoppingCartEntities;
+
 //TODO equals hashcode
     public UserEntity() {
     }

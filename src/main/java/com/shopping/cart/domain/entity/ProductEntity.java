@@ -2,6 +2,7 @@ package com.shopping.cart.domain.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -17,9 +18,8 @@ public class ProductEntity {
     private Date updatedDate;
     private Integer countInStock;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private ShoppingCartEntity shoppingCart;
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ShoppingCartEntity> shoppingCartEntitySet;
 
     public ProductEntity() { }
 

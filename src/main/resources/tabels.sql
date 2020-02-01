@@ -37,7 +37,7 @@ create table products
 (
     id              int auto_increment
         primary key,
-    barcode        varchar(255) null,
+    barcode         varchar(255) null,
     description     varchar(255) null,
     name            varchar(255) null,
     product_code    varchar(255) null,
@@ -101,8 +101,7 @@ create table hibernate_sequence
     engine = MyISAM;
 
 
-
-    # ======================================================================================================================
+# ======================================================================================================================
 #   CREATE DATABASE
 # ======================================================================================================================
 # DROP DATABASE shopping_cart;
@@ -165,4 +164,8 @@ create table shopping_cart
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-
+-- auto-generated definition
+create table hibernate_sequence
+(
+    next_val bigint null
+);

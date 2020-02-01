@@ -3,6 +3,7 @@ package com.shopping.cart.domain.dto;
 import java.io.Serializable;
 
 public class ShoppingCartDto implements Serializable {
+	private static final long serialVersionUID = 7547305298716063920L;
 
 	private Integer id;
 	private Integer userId;

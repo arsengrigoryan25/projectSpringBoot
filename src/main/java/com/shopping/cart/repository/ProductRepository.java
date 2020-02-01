@@ -20,5 +20,5 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Integer
                                             "and (:type is null or p.type = :type) ")
     List<ProductEntity> findByNameAndPriceAndType(@Param("name")String name, @Param("price") Integer price, @Param("type") String type);
 
-    List<ProductEntity> findAll(Sort sort);
+    List<ProductEntity> findAll(Pageable pageable);
 }

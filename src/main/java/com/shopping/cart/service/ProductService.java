@@ -3,6 +3,7 @@ package com.shopping.cart.service;
 import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
 import com.shopping.cart.filter.ProductFilter;
+import com.shopping.cart.filter.SortFilter;
 import com.shopping.cart.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -64,9 +65,8 @@ public class ProductService {
         return productRepository.findByNameAndPriceAndType(name, price, type);
     }
 
-    public List<ProductEntity> sortProducts(String sortValue) {
-        return "price".equals(sortValue) ? productRepository.findAll(Sort.by(Sort.Order.asc(sortValue))) :
-                productRepository.findAll(Sort.by(Sort.Order.desc(sortValue)));
+    public List<ProductEntity> sortProducts(SortFilter filter) {
+        return productRepository.findAll(PageRequest.of(filter.getPage(), filter.getSize(), Sort.by(filter.getSortedValue())));
     }
 
 }

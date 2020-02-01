@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ProductDto implements Serializable {
+	private static final long serialVersionUID = -112542938323603979L;
 
-	private static final long serialVersionUID = 5776458177054327256L;
 	private Integer id;
 	private String name;
 	private String type;

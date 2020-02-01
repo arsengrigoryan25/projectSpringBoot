@@ -4,12 +4,11 @@ import javax.persistence.Column;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {
+    private static final long serialVersionUID = -944912890747315243L;
 
     public enum Role{
         ROLE_ADMIN, ROLE_USER
     }
-
-    private static final long serialVersionUID = 2331727468970096533L;
 
     private Integer id;
     private String name ;
