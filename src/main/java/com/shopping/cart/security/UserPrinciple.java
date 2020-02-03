@@ -1,6 +1,10 @@
 package com.shopping.cart.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shopping.cart.domain.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,9 +27,7 @@ public class UserPrinciple implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrinciple(Long id, String name,
-                         String username, String email, String password,
-                         Collection<? extends GrantedAuthority> authorities) {
+    public UserPrinciple(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -34,15 +36,13 @@ public class UserPrinciple implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName().name())
-        ).collect(Collectors.toList());
+    public static UserPrinciple build(UserEntity user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
         return new UserPrinciple(
                 user.getId(),
                 user.getName(),
-                user.getUsername(),
+                user.getSurname(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities

@@ -6,7 +6,7 @@ import java.util.Date;
 public class ProductDto implements Serializable {
 	private static final long serialVersionUID = -112542938323603979L;
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private String type;
 	private Integer price;
@@ -15,7 +15,7 @@ public class ProductDto implements Serializable {
 	private Integer countInStock;
 
 	public ProductDto() { }
-	public ProductDto(Integer id, String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
+	public ProductDto(Long id, String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -25,10 +25,10 @@ public class ProductDto implements Serializable {
 		this.countInStock = countInStock;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

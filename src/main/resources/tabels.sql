@@ -169,3 +169,7 @@ create table hibernate_sequence
 (
     next_val bigint null
 );
+
+# ---------------------------------------------------------------------
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');

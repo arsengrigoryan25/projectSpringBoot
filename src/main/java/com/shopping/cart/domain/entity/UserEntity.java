@@ -1,39 +1,32 @@
 package com.shopping.cart.domain.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
-//@Table(name = "users", uniqueConstraints = {
-//        @UniqueConstraint(columnNames = {
-//                "username"
-//        }),
-//        @UniqueConstraint(columnNames = {
-//                "email"
-//        })
-//})
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = {"email"})})
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-//    @NotBlank
-//    @Size(min=3, max = 50)
+    private Long id;
     private String name;
     private String surname;
     @Column(unique = true)
-//    @NaturalId
-//    @NotBlank
-//    @Size(max = 50)
-//    @Emai
     private String email;
     private String password;
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ShoppingCartEntity> shoppingCartEntities;
 
-//TODO equals hashcode
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles = new HashSet<>();
+
+    //TODO equals hashcode
     public UserEntity() {
     }
 
@@ -44,18 +37,16 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
-
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -63,7 +54,6 @@ public class UserEntity {
     public String getSurname() {
         return surname;
     }
-
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -71,7 +61,6 @@ public class UserEntity {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -79,8 +68,21 @@ public class UserEntity {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<ShoppingCartEntity> getShoppingCartEntities() {
+        return shoppingCartEntities;
+    }
+    public void setShoppingCartEntities(Set<ShoppingCartEntity> shoppingCartEntities) {
+        this.shoppingCartEntities = shoppingCartEntities;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 }

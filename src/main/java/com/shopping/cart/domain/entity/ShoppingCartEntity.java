@@ -8,7 +8,7 @@ public class ShoppingCartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private Integer userId;
     private Integer productId;
     private Integer quantity;
@@ -30,18 +30,16 @@ public class ShoppingCartEntity {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
-
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public Integer getUserId() {
         return userId;
     }
-
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
@@ -49,7 +47,6 @@ public class ShoppingCartEntity {
     public Integer getProductId() {
         return productId;
     }
-
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
@@ -57,8 +54,22 @@ public class ShoppingCartEntity {
     public Integer getQuantity() {
         return quantity;
     }
-
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public UserEntity getUsers() {
+        return users;
+    }
+    public void setUsers(UserEntity users) {
+        this.users = users;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
 }

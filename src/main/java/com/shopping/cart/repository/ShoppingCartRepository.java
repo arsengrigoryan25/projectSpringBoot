@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ShoppingCartRepository extends CrudRepository<ShoppingCartEntity, Integer> {
+public interface ShoppingCartRepository extends CrudRepository<ShoppingCartEntity, Long> {
     List<ShoppingCartEntity> findByUserId(String userId);
 
 }

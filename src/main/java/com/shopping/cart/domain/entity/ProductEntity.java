@@ -10,7 +10,7 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String name;
     private String type;
     private Integer price;
@@ -32,11 +32,11 @@ public class ProductEntity {
         this.countInStock = countInStock;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,5 +86,13 @@ public class ProductEntity {
 
     public void setCountInStock(Integer countInStock) {
         this.countInStock = countInStock;
+    }
+
+    public Set<ShoppingCartEntity> getShoppingCartEntitySet() {
+        return shoppingCartEntitySet;
+    }
+
+    public void setShoppingCartEntitySet(Set<ShoppingCartEntity> shoppingCartEntitySet) {
+        this.shoppingCartEntitySet = shoppingCartEntitySet;
     }
 }

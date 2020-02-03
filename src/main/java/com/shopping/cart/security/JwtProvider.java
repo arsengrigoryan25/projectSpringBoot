@@ -1,42 +1,41 @@
 package com.shopping.cart.security;
 
+import io.jsonwebtoken.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+// это класс утилит -> он реализует полезные функции
 @Component
 public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @Value("${grokonez.app.jwtSecret}")
-    private String jwtSecret;
+    @Value("${jwt.SecretKey}")
+    private String jwtKey;
 
-    @Value("${grokonez.app.jwtExpiration}")
+    @Value("${jwt.ExpirationTime}")
     private int jwtExpiration;
 
+    // создать токен JWT
     public String generateJwtToken(Authentication authentication) {
-
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
-
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtKey)
                 .compact();
     }
 
-    public String getUserNameFromJwtToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtSecret)
-                .parseClaimsJws(token)
-                .getBody().getSubject();
-    }
-
+    //    проверить токен JWT
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(jwtKey).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             logger.error("Invalid JWT signature -> Message: {} ", e);
@@ -51,5 +50,13 @@ public class JwtProvider {
         }
 
         return false;
+    }
+
+    //  разобрать имя пользователя из токена JWT
+    public String getUserNameFromJwtToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(jwtKey)
+                .parseClaimsJws(token)
+                .getBody().getSubject();
     }
 }

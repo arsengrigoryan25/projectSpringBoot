@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(entity);
     }
 
-    public String deleteProduct(Integer id) {
+    public String deleteProduct(Long id) {
         try {
             productRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {

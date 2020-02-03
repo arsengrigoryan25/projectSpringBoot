@@ -5,23 +5,23 @@ import java.io.Serializable;
 public class ShoppingCartDto implements Serializable {
 	private static final long serialVersionUID = 7547305298716063920L;
 
-	private Integer id;
+	private Long id;
 	private Integer userId;
 	private Integer productId;
 	private Integer quantity;
 
 	public ShoppingCartDto() { }
-	public ShoppingCartDto(Integer id, Integer userId, Integer productId, Integer quantity) {
+	public ShoppingCartDto(Long id, Integer userId, Integer productId, Integer quantity) {
 		this.id = id;
 		this.userId = userId;
 		this.productId = productId;
 		this.quantity = quantity;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
