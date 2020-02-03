@@ -1,13 +1,13 @@
 package com.shopping.cart.mapper;
 
-import com.shopping.cart.domain.dto.ProductDto;
-import com.shopping.cart.domain.entity.ProductEntity;
+import com.shopping.cart.domain.dto.UserDto;
+import com.shopping.cart.domain.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface ProductMapper {
-    ProductEntity dtoToEntity(ProductDto dto);
-    ProductDto entityToDto(ProductEntity entity);
+public interface UserMapper {
+    UserEntity dtoToEntity(UserDto dto);
+    UserDto entityToDto(UserEntity entity);
 }
 
 //public class SimpleSourceDestinationMapperImpl implements SimpleSourceDestinationMapper {

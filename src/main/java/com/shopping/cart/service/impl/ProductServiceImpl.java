@@ -4,19 +4,15 @@ import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
 import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.filter.SortFilter;
+import com.shopping.cart.mapper.ProductMapper;
 import com.shopping.cart.repository.ProductRepository;
 import com.shopping.cart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +20,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
+        this.productMapper = productMapper;
     }
 
     public void creatProduct(ProductDto product) {
@@ -55,18 +53,18 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(entity);
     }
 
-    public Iterable<ProductEntity> getAllProducts() {
+    public Iterable<ProductDto> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public List<ProductEntity> searchProductsByFilter(ProductFilter filter) {
+    public List<ProductDto> searchProductsByFilter(ProductFilter filter) {
         String name = filter.getName();
         Integer price = filter.getPrice();
         String type = filter.getType();
         return productRepository.findByNameAndPriceAndType(name, price, type);
     }
 
-    public List<ProductEntity> sortProducts(SortFilter filter) {
+    public List<ProductDto> sortProducts(SortFilter filter) {
         return productRepository.findAll(PageRequest.of(filter.getPage(), filter.getSize(), Sort.by(filter.getSortedValue())));
     }
 

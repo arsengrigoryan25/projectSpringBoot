@@ -17,7 +17,7 @@ public interface ProductService {
 
     public Iterable<ProductEntity> getAllProducts() ;
 
-    public List<ProductEntity> searchProductsByFilter(ProductFilter filter) ;
+    public List<ProductDto> searchProductsByFilter(ProductFilter filter) ;
 
-    public List<ProductEntity> sortProducts(SortFilter filter) ;
+    public List<ProductDto> sortProducts(SortFilter filter) ;
 }
