@@ -5,14 +5,28 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+//@Table(name = "users", uniqueConstraints = {
+//        @UniqueConstraint(columnNames = {
+//                "username"
+//        }),
+//        @UniqueConstraint(columnNames = {
+//                "email"
+//        })
+//})
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+//    @NotBlank
+//    @Size(min=3, max = 50)
     private String name;
     private String surname;
     @Column(unique = true)
+//    @NaturalId
+//    @NotBlank
+//    @Size(max = 50)
+//    @Emai
     private String email;
     private String password;
 

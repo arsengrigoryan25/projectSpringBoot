@@ -8,27 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ShoppingCartService {
+public interface ShoppingCartService {
 
-    private final ShoppingCartRepository shoppingCartRepository;
+    public void addProductInUserCart(ShoppingCartDto shoppingCartDto) ;
 
-    @Autowired
-    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository) {
-        this.shoppingCartRepository = shoppingCartRepository;
-    }
+    public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto);
 
-    public void addProductInUserCart(ShoppingCartDto shoppingCartDto) {
-        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId(), shoppingCartDto.getQuantity());
-        shoppingCartRepository.save(entity);
-    }
-
-    public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto) {
-        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId(), shoppingCartDto.getQuantity());
-        shoppingCartRepository.delete(entity);
-    }
-
-    public List<ShoppingCartEntity> findProductInUserCartByUserId(String userId) {
-        return shoppingCartRepository.findByUserId(userId);
-    }
+    public List<ShoppingCartEntity> findProductInUserCartByUserId(String userId) ;
 }
