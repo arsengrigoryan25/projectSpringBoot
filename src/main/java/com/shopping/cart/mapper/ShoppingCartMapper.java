@@ -6,10 +6,15 @@ import com.shopping.cart.domain.entity.ShoppingCartEntity;
 import com.shopping.cart.domain.entity.UserEntity;
 import org.mapstruct.Mapper;
 
+import java.util.Iterator;
+import java.util.List;
+
 @Mapper
 public interface ShoppingCartMapper {
     ShoppingCartEntity dtoToEntity(ShoppingCartDto dto);
+    Iterator<ShoppingCartEntity> dtoListToEntityList(Iterator<ShoppingCartDto> dto);
     ShoppingCartDto entityToDto(ShoppingCartEntity entity);
+    Iterator<ShoppingCartDto> entityListToDtoList(Iterator<ShoppingCartEntity> entity);
 }
 
 //public class SimpleSourceDestinationMapperImpl implements SimpleSourceDestinationMapper {

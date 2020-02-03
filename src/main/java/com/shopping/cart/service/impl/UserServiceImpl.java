@@ -2,7 +2,7 @@ package com.shopping.cart.service.impl;
 
 import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.UserEntity;
-import com.shopping.cart.repository.RoleRepository;
+import com.shopping.cart.mapper.UserMapper;
 import com.shopping.cart.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
 import com.shopping.cart.service.UserService;
@@ -11,18 +11,21 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Iterator;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -36,8 +39,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return "User is added";
     }
     @Override
-    public Iterable<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public Iterable<UserDto> getAllUsers() {
+        return userMapper.entityListToDtoList(userRepository.findAll());
     }
     @Override
     public String deleteUser(Long id) {

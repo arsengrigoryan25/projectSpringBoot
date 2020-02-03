@@ -15,9 +15,9 @@ public interface ProductService {
 
     public void updateProducts(ProductDto productDto) ;
 
-    public Iterable<ProductEntity> getAllProducts() ;
+    public Iterable<ProductDto> getAllProducts() ;
 
-    public List<ProductDto> searchProductsByFilter(ProductFilter filter) ;
+    public Iterable<ProductDto> searchProductsByFilter(ProductFilter filter) ;
 
-    public List<ProductDto> sortProducts(SortFilter filter) ;
+    public Iterable<ProductDto> sortProducts(SortFilter filter) ;
 }

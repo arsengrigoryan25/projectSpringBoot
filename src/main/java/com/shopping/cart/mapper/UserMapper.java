@@ -4,9 +4,13 @@ import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.UserEntity;
 import org.mapstruct.Mapper;
 
+import java.util.Iterator;
+
 @Mapper
 public interface UserMapper {
+    Iterable<UserEntity> dtoListToEntityList(Iterable<UserDto> dto);
     UserEntity dtoToEntity(UserDto dto);
+    Iterable<UserDto> entityListToDtoList(Iterable<UserEntity> entity);
     UserDto entityToDto(UserEntity entity);
 }
 

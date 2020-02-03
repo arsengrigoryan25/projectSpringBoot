@@ -6,6 +6,8 @@ import com.shopping.cart.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.HTMLDocument;
+import java.util.Iterator;
 import java.util.List;
 
 public interface ShoppingCartService {
@@ -14,5 +16,5 @@ public interface ShoppingCartService {
 
     public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto);
 
-    public List<ShoppingCartEntity> findProductInUserCartByUserId(String userId) ;
+    public Iterator<ShoppingCartDto> findProductInUserCartByUserId(String userId) ;
 }

@@ -54,33 +54,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Iterable<ProductDto> getAllProducts() {
-        return productRepository.findAll();
+        return productMapper.entityListToDtoList(productRepository.findAll());
     }
 
-    public List<ProductDto> searchProductsByFilter(ProductFilter filter) {
+    public Iterable<ProductDto> searchProductsByFilter(ProductFilter filter) {
         String name = filter.getName();
         Integer price = filter.getPrice();
         String type = filter.getType();
-        return productRepository.findByNameAndPriceAndType(name, price, type);
+        return productMapper.entityListToDtoList(productRepository.findByNameAndPriceAndType(name, price, type));
     }
 
-    public List<ProductDto> sortProducts(SortFilter filter) {
-        return productRepository.findAll(PageRequest.of(filter.getPage(), filter.getSize(), Sort.by(filter.getSortedValue())));
+    public Iterable<ProductDto> sortProducts(SortFilter filter) {
+        return productMapper.entityListToDtoList(productRepository.findAll(PageRequest.of(filter.getPage(), filter.getSize(), Sort.by(filter.getSortedValue()))));
     }
 
 }
-
-//• Пользователь может просматривать все продукты, выполнять фильтрацию по названию, цене (по убыванию) и по типу
-
-//    String sql = " UPDATE product " +
-//            "SET type = ?," +
-//            "    price = ?," +
-//            "    countInStock = ?" +
-//            "WHERE id = ?";
-//
-//        jdbcTemplate.update(sql,
-//                product.getName(),
-//                product.getPrice(),
-//                product.getType(),
-//                product.getCountInStock(),
-//                product.getId());

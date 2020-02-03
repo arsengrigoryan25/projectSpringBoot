@@ -7,7 +7,9 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ProductMapper {
     ProductEntity dtoToEntity(ProductDto dto);
+    Iterable<ProductEntity> dtoListToEntityList(Iterable<ProductDto> dto);
     ProductDto entityToDto(ProductEntity entity);
+    Iterable<ProductDto> entityListToDtoList(Iterable<ProductEntity> entity);
 }
 
 //public class SimpleSourceDestinationMapperImpl implements SimpleSourceDestinationMapper {
