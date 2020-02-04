@@ -1,9 +1,7 @@
-package com.shopping.cart.mapper;
+package com.shopping.cart.service.mapper;
 
 import com.shopping.cart.domain.dto.RoleDto;
-import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.RoleEntity;
-import com.shopping.cart.domain.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 @Mapper

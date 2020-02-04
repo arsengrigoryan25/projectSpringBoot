@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ShoppingCartRepository extends CrudRepository<ShoppingCartEntity, Long> {
-    Iterable<ShoppingCartEntity> findByUserId(String userId);
+    Iterable<ShoppingCartEntity> findByUserId(Long userId);
 
 }

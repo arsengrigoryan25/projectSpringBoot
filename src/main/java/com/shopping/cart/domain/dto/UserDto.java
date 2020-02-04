@@ -1,6 +1,5 @@
 package com.shopping.cart.domain.dto;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {

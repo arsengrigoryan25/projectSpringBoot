@@ -22,17 +22,13 @@ public class ShoppingCartController {
         shoppingCartService.addProductInUserCart(shoppingCartDto);
     }
 
-    @PostMapping("/searchProductInUserCart")
-    public void searchProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
-        shoppingCartService.addProductInUserCart(shoppingCartDto);
+    @GetMapping("/getProductsFromUserCart/{userId}")
+    public void getProductsFromUserCart(@PathVariable Long userId){
+        shoppingCartService.getProductFromUserCartByUserId(userId);
     }
 
+    @DeleteMapping("/deleteProductsFromUserCart")
     public void deleteProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
-//        shoppingCartService.(shoppingCartDto);
+        shoppingCartService.deleteProductInUserCart(shoppingCartDto);
     }
-
-    public void  searchProductsByFilter(ProductFilter filter){}
-
-
-
 }

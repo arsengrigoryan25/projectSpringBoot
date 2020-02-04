@@ -4,7 +4,7 @@ import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
 import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.filter.SortFilter;
-import com.shopping.cart.mapper.ProductMapper;
+import com.shopping.cart.service.mapper.ProductMapper;
 import com.shopping.cart.repository.ProductRepository;
 import com.shopping.cart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {

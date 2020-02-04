@@ -9,8 +9,8 @@ public class ShoppingCartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer userId;
-    private Integer productId;
+    private Long userId;
+    private Long productId;
     private Integer quantity;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -24,7 +24,7 @@ public class ShoppingCartEntity {
     public ShoppingCartEntity() {
     }
 
-    public ShoppingCartEntity(Integer userId, Integer productId, Integer quantity) {
+    public ShoppingCartEntity(Long userId, Long productId, Integer quantity) {
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
@@ -37,17 +37,17 @@ public class ShoppingCartEntity {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

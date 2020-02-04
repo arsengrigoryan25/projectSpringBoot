@@ -2,7 +2,7 @@ package com.shopping.cart.service.impl;
 
 import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.UserEntity;
-import com.shopping.cart.mapper.UserMapper;
+import com.shopping.cart.service.mapper.UserMapper;
 import com.shopping.cart.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
 import com.shopping.cart.service.UserService;
@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Iterator;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -28,7 +26,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public String creatUser(UserDto dto) {
+    public String creatUser(UserEntity dto) {
         UserEntity entity = new UserEntity(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getPassword());
         try {
             userRepository.save(entity);

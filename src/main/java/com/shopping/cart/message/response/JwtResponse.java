@@ -3,7 +3,7 @@ package com.shopping.cart.message.response;
 // После успешной аутентификации возвращается сервером SpringBoot, он состоит из 2 частей:
 public class JwtResponse {
     private String token;
-    private String type = "Bearer"; // todo anun@ poxel
+    private String type = "Bearer";
 
     public JwtResponse(String accessToken) {
         this.token = accessToken;
