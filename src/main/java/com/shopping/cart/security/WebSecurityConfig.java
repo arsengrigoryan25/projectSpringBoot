@@ -38,22 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
                 .passwordEncoder(passwordEncoder());
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-//                .usersByUsernameQuery("SELECT email, password " +
-//                        "FROM user " +
-//                        "WHERE username=?")
-//                .authoritiesByUsernameQuery("SELECT u.email, u.role " +
-//                        "FROM user u " +
-//                        "WHERE u.username=?");
     }
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web
-//                .ignoring()
-//                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-//    }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -69,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/user/create").permitAll()
                 .antMatchers("/user/signin").permitAll()
                 .antMatchers("/product/getAll").permitAll()

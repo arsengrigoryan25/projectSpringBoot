@@ -49,10 +49,7 @@ public class UserController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserDto loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
-                )
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -62,8 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> createUser(@Valid @RequestBody UserDto userDto){  // @Valid-???
+    public ResponseEntity<String> createUser( @RequestBody UserDto userDto){  // @Valid-???
         if(userRepository.existsByEmail(userDto.getEmail())) {
             return new ResponseEntity<String>("Email is already in use!", HttpStatus.BAD_REQUEST);
         }

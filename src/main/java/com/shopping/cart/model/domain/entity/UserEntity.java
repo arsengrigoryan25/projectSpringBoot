@@ -13,7 +13,7 @@ public class UserEntity {
     private Long id;
     private String name;
     private String surname;
-    @Column(unique = true)
+//    @Column(unique = true)
     private String email;
     private String password;
 
@@ -29,7 +29,6 @@ public class UserEntity {
     //TODO equals hashcode
     public UserEntity() {
     }
-
     public UserEntity(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
