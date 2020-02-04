@@ -1,6 +1,6 @@
 package com.shopping.cart.domain.dto;
 
-import com.shopping.cart.security.RoleName;
+import com.shopping.cart.enums.RoleName;
 import java.io.Serializable;
 
 public class RoleDto implements Serializable {

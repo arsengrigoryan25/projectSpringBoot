@@ -1,6 +1,6 @@
 package com.shopping.cart.domain.dto;
 
-import com.shopping.cart.BasketItemsStatus;
+import com.shopping.cart.enums.BasketItemsStatus;
 import java.io.Serializable;
 
 public class ShoppingCartDto implements Serializable {

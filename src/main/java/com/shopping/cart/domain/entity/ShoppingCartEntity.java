@@ -1,7 +1,6 @@
 package com.shopping.cart.domain.entity;
 
-import com.shopping.cart.BasketItemsStatus;
-import com.shopping.cart.security.RoleName;
+import com.shopping.cart.enums.BasketItemsStatus;
 
 import javax.persistence.*;
 

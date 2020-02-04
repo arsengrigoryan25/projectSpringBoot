@@ -8,7 +8,7 @@ import com.shopping.cart.message.response.JwtResponse;
 import com.shopping.cart.repository.RoleRepository;
 import com.shopping.cart.repository.UserRepository;
 import com.shopping.cart.security.JwtProvider;
-import com.shopping.cart.security.RoleName;
+import com.shopping.cart.enums.RoleName;
 import com.shopping.cart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

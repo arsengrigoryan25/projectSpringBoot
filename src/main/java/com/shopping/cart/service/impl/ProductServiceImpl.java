@@ -2,6 +2,8 @@ package com.shopping.cart.service.impl;
 
 import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
+import com.shopping.cart.enums.ErrorMessageEnum;
+import com.shopping.cart.exception.MyException;
 import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.filter.SortFilter;
 import com.shopping.cart.service.mapper.ProductMapper;
@@ -36,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             productRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            return "Product not found";
+            throw new MyException(ErrorMessageEnum.PRODUCT_NOT_FOUND);
         }
         return "Product is deleted";
     }

@@ -1,6 +1,6 @@
 package com.shopping.cart.domain.entity;
 
-import com.shopping.cart.security.RoleName;
+import com.shopping.cart.enums.RoleName;
 import javax.persistence.*;
 import java.util.List;
 

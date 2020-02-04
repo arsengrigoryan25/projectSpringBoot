@@ -90,3 +90,4 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 
 INSERT INTO users(id,name,surname,email,password) VALUES(1,'Admin','Admin','admin','admin');
+INSERT INTO user_roles(user_id, role_id) VALUES(1,1);

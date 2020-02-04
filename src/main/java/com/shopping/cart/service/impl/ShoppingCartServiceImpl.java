@@ -1,16 +1,13 @@
 package com.shopping.cart.service.impl;
 
-import com.shopping.cart.BasketItemsStatus;
+import com.shopping.cart.enums.BasketItemsStatus;
 import com.shopping.cart.domain.dto.ShoppingCartDto;
-import com.shopping.cart.domain.entity.ProductEntity;
 import com.shopping.cart.domain.entity.ShoppingCartEntity;
 import com.shopping.cart.service.mapper.ShoppingCartMapper;
 import com.shopping.cart.repository.ShoppingCartRepository;
 import com.shopping.cart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -51,8 +48,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId());
         shoppingCartRepository.delete(entity);
     }
-
-
-
-
 }

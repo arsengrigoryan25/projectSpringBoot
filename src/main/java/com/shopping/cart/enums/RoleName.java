@@ -1,4 +1,4 @@
-package com.shopping.cart.security;
+package com.shopping.cart.enums;
 
 public enum  RoleName {
     ROLE_USER,

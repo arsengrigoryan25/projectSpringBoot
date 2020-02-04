@@ -2,12 +2,15 @@ package com.shopping.cart.service.impl;
 
 import com.shopping.cart.domain.dto.UserDto;
 import com.shopping.cart.domain.entity.UserEntity;
+import com.shopping.cart.enums.ErrorMessageEnum;
+import com.shopping.cart.exception.MyException;
 import com.shopping.cart.service.mapper.UserMapper;
 import com.shopping.cart.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
 import com.shopping.cart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,7 +34,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         try {
             userRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            return "Tvyal email-ov user ka";
+            throw new MyException(ErrorMessageEnum.USER_EXIST);
         }
         return "User is added";
     }
@@ -43,8 +46,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public String deleteUser(Long id) {
         try {
             userRepository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            return "User not found";
+        } catch (EmptyResultDataAccessException e) {
+            throw new MyException(ErrorMessageEnum.USER_NOT_FOUNT);
         }
         return "User is deleted";
     }

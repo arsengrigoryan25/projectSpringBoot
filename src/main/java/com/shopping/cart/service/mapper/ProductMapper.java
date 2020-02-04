@@ -4,6 +4,7 @@ import com.shopping.cart.domain.dto.ProductDto;
 import com.shopping.cart.domain.entity.ProductEntity;
 import org.mapstruct.Mapper;
 
+
 @Mapper
 public interface ProductMapper {
     ProductEntity dtoToEntity(ProductDto dto);
