@@ -87,11 +87,11 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="user_id" type="BIGINT" autoIncrement="true">
+            <column name="user_id" type="BIGINT" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="product_id" type="BIGINT" autoIncrement="true">
+            <column name="product_id" type="BIGINT" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
@@ -151,21 +151,21 @@
             <column name="name" value="ROLE_USER"/>
         </insert>
 
-        <insert tableName="roles">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
+<!--        <insert tableName="roles">-->
+<!--            <column name="name" value="ROLE_ADMIN"/>-->
+<!--        </insert>-->
 
-        <insert tableName="users">
-            <column name="id" value="1"/>
-            <column name="name" value="Admin"/>
-            <column name="surname" value="Admin"/>
-            <column name="email" value="admin"/>
-            <column name="password" value="admin"/>
-        </insert>
+<!--        <insert tableName="users">-->
+<!--            <column name="id" value="1"/>-->
+<!--            <column name="name" value="Admin"/>-->
+<!--            <column name="surname" value="Admin"/>-->
+<!--            <column name="email" value="admin"/>-->
+<!--            <column name="password" value="admin"/>-->
+<!--        </insert>-->
 
-        <insert tableName="role_user">
-            <column name="id" value="1"/>
-            <column name="name" value="1"/>
-        </insert>
+<!--        <insert tableName="role_user">-->
+<!--            <column name="id" value="1"/>-->
+<!--            <column name="name" value="1"/>-->
+<!--        </insert>-->
     </changeSet>
 </databaseChangeLog>
