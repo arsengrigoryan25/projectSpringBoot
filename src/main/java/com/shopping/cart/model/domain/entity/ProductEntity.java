@@ -14,7 +14,7 @@ public class ProductEntity {
     private String name;
     private String type;
     private Integer price;
-    private Date addedDate;
+    private Date createdDate;
     private Date updatedDate;
     private Integer countInStock;
 
@@ -22,11 +22,11 @@ public class ProductEntity {
     private Set<ShoppingCartEntity> shoppingCartEntitySet;
 
     public ProductEntity() { }
-    public ProductEntity(String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
+    public ProductEntity(String name, String type, Integer price, Date createdDate, Date updatedDate, Integer countInStock) {
         this.name = name;
         this.type = type;
         this.price = price;
-        this.addedDate = addedDate;
+        this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.countInStock = countInStock;
     }
@@ -59,11 +59,11 @@ public class ProductEntity {
         this.price = price;
     }
 
-    public Date getAddedDate() {
-        return addedDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
-    public void setAddedDate(Date addedDate) {
-        this.addedDate = addedDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Date getUpdatedDate() {

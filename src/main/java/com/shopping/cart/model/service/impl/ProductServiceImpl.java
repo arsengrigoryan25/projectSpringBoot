@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public ProductDto creatProduct(ProductDto product) {
-        ProductEntity entity = new ProductEntity(product.getName(), product.getType(), product.getPrice(), product.getAddedDate(),
+        ProductEntity entity = new ProductEntity(product.getName(), product.getType(), product.getPrice(), product.getCreatedDate(),
                 null, product.getCountInStock());
         return productMapper.entityToDto(productRepository.save(entity));
     }

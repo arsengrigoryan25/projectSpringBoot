@@ -25,7 +25,7 @@ public class ProductController {
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
-        productDto.setAddedDate(new Date());
+        productDto.setCreatedDate(new Date());
         return productService.creatProduct(productDto);
     }
 
