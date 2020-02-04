@@ -1,109 +1,6 @@
 # ======================================================================================================================
 #   CREATE DATABASE
 # ======================================================================================================================
-DROP DATABASE warehouse;
-CREATE DATABASE warehouse CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE warehouse;
-
-# ======================================================================================================================
-#   CREATE TABLE
-# ======================================================================================================================
-#   DROP TABLE users;
-#   DROP TABLE products;
-#   DROP TABLE product_type;
-#   DROP TABLE info;
-#   DROP TABLE hibernate_sequence;
-
--- auto-generated definition
-create table users
-(
-    id        bigint auto_increment
-        primary key,
-    active    bit          not null,
-    last_name varchar(255) null,
-    name      varchar(255) null,
-    password  varchar(255) null,
-    role      varchar(255) null,
-    username  varchar(255) null,
-    constraint UK_r43af9ap4edm43mmtq01oddj6
-        unique (username),
-    constraint UK_r53o2ojjw4fikudfnsuuga336
-        unique (password)
-)
-    engine = MyISAM;
-
--- auto-generated definition
-create table products
-(
-    id              int auto_increment
-        primary key,
-    barcode         varchar(255) null,
-    description     varchar(255) null,
-    name            varchar(255) null,
-    product_code    varchar(255) null,
-    product_type_id varchar(255) null,
-    purchase_price  varchar(255) null,
-    sale_price      varchar(255) null,
-    constraint UK_ks7bl2r407pphq72vxpufxqn
-        unique (barcode)
-)
-    engine = MyISAM;
-
--- auto-generated definition
-create table product_type
-(
-    id   int auto_increment
-        primary key,
-    name varchar(255) null,
-    constraint UK_bnu2aqss00w6he2vs4bmmy609
-        unique (name)
-)
-    engine = MyISAM;
-
--- auto-generated definition
-create table info
-(
-    id                       int auto_increment
-        primary key,
-    add_product_in_shop      int          null,
-    add_product_in_warehouse int          null,
-    barcode                 varchar(255) null,
-    change_date              datetime     null,
-    count                    int          null,
-    increment_or_decrement   bit          null,
-    info                     varchar(255) null,
-    product_code             varchar(255) null,
-    sell                     int          null,
-    constraint UK_5ffillxg8dtoukouhaip6nbb9
-        unique (barcode)
-)
-    engine = MyISAM;
-
--- auto-generated definition
-create table quantity_of_product
-(
-    id                 int auto_increment
-        primary key,
-    barcode           varchar(255) null,
-    count_in_shop      int          null,
-    count_in_warehouse int          null,
-    count_of_sell      int          null,
-    constraint UK_qu33mhl9ayyvf35pbjbai709x
-        unique (barcode)
-)
-    engine = MyISAM;
-
--- auto-generated definition
-create table hibernate_sequence
-(
-    next_val bigint null
-)
-    engine = MyISAM;
-
-
-# ======================================================================================================================
-#   CREATE DATABASE
-# ======================================================================================================================
 # DROP DATABASE shopping_cart;
 # CREATE DATABASE shopping_cart CHARACTER SET utf8 COLLATE utf8_general_ci;
 # USE shopping_cart;
@@ -114,26 +11,14 @@ create table hibernate_sequence
 DROP TABLE users;
 DROP TABLE product;
 DROP TABLE shopping_cart;
-# -----------------------------------------------
-ALTER TABLE users AUTO_INCREMENT = 1;
-ALTER TABLE product AUTO_INCREMENT = 1;
-ALTER TABLE shopping_cart AUTO_INCREMENT = 1;
-# -----------------------------------------------
-SELECT
-#        *
-    name,price,type
-FROM
-#      users
-     product
-# shopping_cart
-;
-
+DROP TABLE roles;
+DROP TABLE user_roles;
 # -----------------------------------------------
 create table users
 (
-    id       int          not null
+    id       bigint       not null
         primary key,
-    email    varchar(255) null,
+    email    varchar(50)  null,
     name     varchar(255) null,
     password varchar(255) null,
     surname  varchar(255) null,
@@ -143,7 +28,7 @@ create table users
 
 create table product
 (
-    id             int          not null
+    id             bigint       not null
         primary key,
     added_date     datetime     null,
     count_in_stock int          null,
@@ -151,6 +36,13 @@ create table product
     price          int          null,
     type           varchar(255) null,
     updated_date   datetime     null
+);
+
+create table roles
+(
+    id   bigint auto_increment
+        primary key,
+    name varchar(255) null
 );
 
 create table shopping_cart
@@ -164,6 +56,29 @@ create table shopping_cart
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
+create table shopping_cart
+(
+    id         bigint not null
+        primary key,
+    product_id int    null,
+    quantity   int    null,
+    user_id    int    null,
+    constraint FKmy8drf9gpv759uv3glwegxt67
+        foreign key (id) references product (id)
+);
+
+create table user_roles
+(
+    user_id bigint not null,
+    role_id bigint not null,
+    primary key (user_id, role_id),
+    constraint FKh8ciramu9cc9q3qcqiv4ue8a6
+        foreign key (role_id) references roles (id),
+    constraint FKhfh9dx7w3ubf1co1vdev94g3f
+        foreign key (user_id) references users (id)
+);
+
+
 -- auto-generated definition
 create table hibernate_sequence
 (
@@ -173,3 +88,5 @@ create table hibernate_sequence
 # ---------------------------------------------------------------------
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+INSERT INTO users(id,name,surname,email,password) VALUES(1,'Admin','Admin','admin','admin');
