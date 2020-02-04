@@ -1,15 +1,14 @@
 package com.shopping.cart.controller;
 
-import com.shopping.cart.domain.dto.UserDto;
-import com.shopping.cart.domain.entity.RoleEntity;
-import com.shopping.cart.domain.entity.UserEntity;
-import com.shopping.cart.message.request.LoginForm;
-import com.shopping.cart.message.response.JwtResponse;
-import com.shopping.cart.repository.RoleRepository;
-import com.shopping.cart.repository.UserRepository;
+import com.shopping.cart.model.domain.dto.UserDto;
+import com.shopping.cart.model.domain.entity.RoleEntity;
+import com.shopping.cart.model.domain.entity.UserEntity;
+import com.shopping.cart.security.JwtResponse;
+import com.shopping.cart.model.repository.RoleRepository;
+import com.shopping.cart.model.repository.UserRepository;
 import com.shopping.cart.security.JwtProvider;
-import com.shopping.cart.enums.RoleName;
-import com.shopping.cart.service.UserService;
+import com.shopping.cart.model.domain.enums.RoleName;
+import com.shopping.cart.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserDto loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -66,7 +65,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> createUser(@Valid @RequestBody UserDto userDto){  // @Valid-???
         if(userRepository.existsByEmail(userDto.getEmail())) {
-            return new ResponseEntity<String>("Fail -> Email is already in use!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Email is already in use!", HttpStatus.BAD_REQUEST);
         }
 
         // Creating user's account
@@ -110,7 +109,7 @@ public class UserController {
 
     @DeleteMapping("/delete")
     @PreAuthorize("hasRole('ADMIN')")
-    public String deleteUser(@RequestParam Long id){
+    public Long deleteUser(@RequestParam Long id){
         return userService.deleteUser(id);
     }
 }

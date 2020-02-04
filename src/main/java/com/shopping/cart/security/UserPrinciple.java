@@ -1,7 +1,7 @@
 package com.shopping.cart.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shopping.cart.domain.entity.UserEntity;
+import com.shopping.cart.model.domain.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,16 +1,15 @@
 package com.shopping.cart.controller;
 
-import com.shopping.cart.domain.dto.ProductDto;
-import com.shopping.cart.domain.entity.ProductEntity;
-import com.shopping.cart.filter.ProductFilter;
-import com.shopping.cart.filter.SortFilter;
-import com.shopping.cart.service.ProductService;
+import com.shopping.cart.model.domain.dto.ProductDto;
+import com.shopping.cart.model.domain.entity.ProductEntity;
+import com.shopping.cart.model.filter.ProductFilter;
+//import com.shopping.cart.model.filter.SortFilter;
+import com.shopping.cart.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
 
 @RequestMapping("/product")
 @RestController
@@ -25,17 +24,15 @@ public class ProductController {
 
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
-    public String createProduct(@RequestBody ProductDto productDto) {
+    public ProductEntity createProduct(@RequestBody ProductDto productDto) {
         productDto.setAddedDate(new Date());
-        productService.creatProduct(productDto);
-        return "";
+        return productService.creatProduct(productDto);
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ADMIN')")
-    public String updateProducts(@RequestBody ProductDto productDto) {
-        productService.updateProducts(productDto);
-        return "";
+    public ProductEntity updateProducts(@RequestBody ProductDto productDto) {
+        return productService.updateProducts(productDto);
     }
 
     @GetMapping("/getAll")
@@ -44,19 +41,18 @@ public class ProductController {
     }
 
     @PostMapping("/getByFilter")
-    public Iterable<ProductDto> searchProductsByFilter(@RequestBody ProductFilter filter){
-        return productService.searchProductsByFilter(filter);
+    public Iterable<ProductDto> getProductsByFilter(@RequestBody ProductFilter filter){
+        return productService.getProductsByFilter(filter);
     }
 
-    @PostMapping("/sortProducts")
-    public Iterable<ProductDto> sortProducts(@RequestBody SortFilter filter){
-        return productService.sortProducts(filter);
-    }
+//    @PostMapping("/sortProducts")
+//    public Iterable<ProductDto> sortProducts(@RequestBody SortFilter filter){
+//        return productService.sortProducts(filter);
+//    }
 
     @DeleteMapping("/{itemId}/delete")
     @PreAuthorize("hasRole('ADMIN')")
-    public String deleteProduct(@PathVariable Long itemId) {
-        productService.deleteProduct(itemId);
-        return "";
+    public Long deleteProduct(@PathVariable Long itemId) {
+        return productService.deleteProduct(itemId);
     }
 }

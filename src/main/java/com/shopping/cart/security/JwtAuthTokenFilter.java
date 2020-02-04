@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shopping.cart.enums.ErrorMessageEnum;
-import com.shopping.cart.exception.MyException;
-import com.shopping.cart.service.impl.UserServiceImpl;
+import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
+import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.model.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             logger.error("Can NOT set user authentication -> Message: {}", e);
-            throw new MyException(ErrorMessageEnum.USER_NOT_AUTH);
+            throw new CustomRuntimeException(ErrorMessageEnum.USER_NOT_AUTH);
         }
 
         filterChain.doFilter(request, response);
