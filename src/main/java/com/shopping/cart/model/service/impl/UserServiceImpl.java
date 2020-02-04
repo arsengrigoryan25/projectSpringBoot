@@ -3,7 +3,7 @@ package com.shopping.cart.model.service.impl;
 import com.shopping.cart.model.domain.dto.UserDto;
 import com.shopping.cart.model.domain.entity.UserEntity;
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
-import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.model.exception.CustomRuntimeException;
 import com.shopping.cart.model.service.mapper.UserMapper;
 import com.shopping.cart.model.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
@@ -29,10 +29,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserEntity creatUser(UserEntity dto) {
+    public UserDto creatUser(UserEntity dto) {
         UserEntity entity = new UserEntity(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getPassword());
         try {
-            return userRepository.save(entity);
+            return userMapper.entityToDto(userRepository.save(entity));
         } catch (DataIntegrityViolationException e) {
             throw new CustomRuntimeException(ErrorMessageEnum.USER_EXIST);
         }

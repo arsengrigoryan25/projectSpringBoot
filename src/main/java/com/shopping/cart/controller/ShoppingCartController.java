@@ -19,26 +19,26 @@ public class ShoppingCartController {
 
     @PostMapping("/addProductInUserCart")
     @PreAuthorize("hasRole('USER')")
-    public void addProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
-        shoppingCartService.addProductInUserCart(shoppingCartDto);
+    public ShoppingCartDto addProductInUserCart(@RequestBody ShoppingCartDto shoppingCartDto){
+        return shoppingCartService.addProductInUserCart(shoppingCartDto);
     }
 
     @GetMapping("/getProductsFromUserCart/{userId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public void getProductsFromUserCart(@PathVariable Long userId){
-        shoppingCartService.getProductByUserId(userId);
+    public Iterable<ShoppingCartDto> getProductsFromUserCart(@PathVariable Long userId){
+        return shoppingCartService.getProductByUserId(userId);
     }
 
     @GetMapping("/getPendingProduct/{userId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void getPendingProductFromUserCart(@PathVariable Long userId){
-        shoppingCartService.getPendingProduct(userId);
+    public Iterable<ShoppingCartDto> getPendingProductFromUserCart(@PathVariable Long userId){
+        return shoppingCartService.getPendingProduct(userId);
     }
 
     @GetMapping("/approvedProduct")
     @PreAuthorize("hasRole('ADMIN')")
-    public void approvedProduct(@RequestBody ShoppingCartDto shoppingCartDto){
-        shoppingCartService.approvedProduct(shoppingCartDto);
+    public ShoppingCartDto approvedProduct(@RequestBody ShoppingCartDto shoppingCartDto){
+        return shoppingCartService.approvedProduct(shoppingCartDto);
     }
 
     @DeleteMapping("/deleteProductsFromUserCart")

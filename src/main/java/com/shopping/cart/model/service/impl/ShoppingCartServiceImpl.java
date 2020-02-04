@@ -4,7 +4,7 @@ import com.shopping.cart.model.domain.enums.BasketItemsStatus;
 import com.shopping.cart.model.domain.dto.ShoppingCartDto;
 import com.shopping.cart.model.domain.entity.ShoppingCartEntity;
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
-import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.model.exception.CustomRuntimeException;
 import com.shopping.cart.model.service.mapper.ShoppingCartMapper;
 import com.shopping.cart.model.repository.ShoppingCartRepository;
 import com.shopping.cart.model.service.ShoppingCartService;
@@ -23,10 +23,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 
-    public ShoppingCartEntity addProductInUserCart(ShoppingCartDto shoppingCartDto) {
+    public ShoppingCartDto addProductInUserCart(ShoppingCartDto shoppingCartDto) {
         ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(), shoppingCartDto.getProductId(), shoppingCartDto.getQuantity(),
                 BasketItemsStatus.PENDING);
-        return shoppingCartRepository.save(entity);
+        return shoppingCartMapper.entityToDto(shoppingCartRepository.save(entity));
     }
 
     @Override
@@ -40,10 +40,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCartEntity approvedProduct(ShoppingCartDto shoppingCartDto) {
+    public ShoppingCartDto approvedProduct(ShoppingCartDto shoppingCartDto) {
         ShoppingCartEntity entity = shoppingCartRepository.findById(shoppingCartDto.getId()).get();
         entity.setStatus(BasketItemsStatus.APPROVED);
-        return shoppingCartRepository.save(entity);
+        return shoppingCartMapper.entityToDto(shoppingCartRepository.save(entity));
     }
 
     @Override

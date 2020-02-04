@@ -3,7 +3,7 @@ package com.shopping.cart.model.service.impl;
 import com.shopping.cart.model.domain.dto.ProductDto;
 import com.shopping.cart.model.domain.entity.ProductEntity;
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
-import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.model.exception.CustomRuntimeException;
 import com.shopping.cart.model.filter.ProductFilter;
 //import com.shopping.cart.model.filter.SortFilter;
 import com.shopping.cart.model.service.mapper.ProductMapper;
@@ -26,10 +26,10 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
-    public ProductEntity creatProduct(ProductDto product) {
+    public ProductDto creatProduct(ProductDto product) {
         ProductEntity entity = new ProductEntity(product.getName(), product.getType(), product.getPrice(), product.getAddedDate(),
                 null, product.getCountInStock());
-        return productRepository.save(entity);
+        return productMapper.entityToDto(productRepository.save(entity));
     }
 
     public Long deleteProduct(Long id) {
@@ -41,14 +41,14 @@ public class ProductServiceImpl implements ProductService {
         return id;
     }
 
-    public ProductEntity updateProducts(ProductDto productDto) {
+    public ProductDto updateProducts(ProductDto productDto) {
         ProductEntity entity = productRepository.findById(productDto.getId()).get();
         entity.setName(productDto.getName());
         entity.setType(productDto.getType());
         entity.setPrice(productDto.getPrice());
         entity.setUpdatedDate(new Date());
         entity.setCountInStock(productDto.getCountInStock());
-        return productRepository.save(entity);
+        return productMapper.entityToDto(productRepository.save(entity));
     }
 
     public Iterable<ProductDto> getAllProducts() {

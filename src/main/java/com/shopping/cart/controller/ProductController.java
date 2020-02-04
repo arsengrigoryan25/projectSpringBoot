@@ -24,14 +24,14 @@ public class ProductController {
 
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
-    public ProductEntity createProduct(@RequestBody ProductDto productDto) {
+    public ProductDto createProduct(@RequestBody ProductDto productDto) {
         productDto.setAddedDate(new Date());
         return productService.creatProduct(productDto);
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ADMIN')")
-    public ProductEntity updateProducts(@RequestBody ProductDto productDto) {
+    public ProductDto updateProducts(@RequestBody ProductDto productDto) {
         return productService.updateProducts(productDto);
     }
 
