@@ -16,5 +16,5 @@ public interface ShoppingCartService {
 
     public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto);
 
-    public Iterator<ShoppingCartDto> findProductInUserCartByUserId(String userId) ;
+    public Iterable<ShoppingCartDto> findProductInUserCartByUserId(String userId) ;
 }

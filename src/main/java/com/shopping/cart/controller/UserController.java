@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("/find")
     @PreAuthorize("hasRole('ADMIN')")
-    public Iterable<UserEntity> getAllUsers(){
+    public Iterable<UserDto> getAllUsers(){
         return userService.getAllUsers();
     }
 

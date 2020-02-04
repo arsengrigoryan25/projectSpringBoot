@@ -36,17 +36,17 @@ public class ProductController {
     }
 
     @GetMapping("/getAll")
-    public Iterable<ProductEntity> getAllProducts() {
+    public Iterable<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @PostMapping("/getByFilter")
-    public List<ProductEntity> searchProductsByFilter(@RequestBody ProductFilter filter){
+    public Iterable<ProductDto> searchProductsByFilter(@RequestBody ProductFilter filter){
         return productService.searchProductsByFilter(filter);
     }
 
     @PostMapping("/sortProducts")
-    public List<ProductEntity> sortProducts(@RequestBody SortFilter filter){
+    public Iterable<ProductDto> sortProducts(@RequestBody SortFilter filter){
         return productService.sortProducts(filter);
     }
 

@@ -12,9 +12,9 @@ import java.util.List;
 @Mapper
 public interface ShoppingCartMapper {
     ShoppingCartEntity dtoToEntity(ShoppingCartDto dto);
-    Iterator<ShoppingCartEntity> dtoListToEntityList(Iterator<ShoppingCartDto> dto);
+    Iterable<ShoppingCartEntity> dtoListToEntityList(Iterable<ShoppingCartDto> dto);
     ShoppingCartDto entityToDto(ShoppingCartEntity entity);
-    Iterator<ShoppingCartDto> entityListToDtoList(Iterator<ShoppingCartEntity> entity);
+    Iterable<ShoppingCartDto> entityListToDtoList(Iterable<ShoppingCartEntity> entity);
 }
 
 //public class SimpleSourceDestinationMapperImpl implements SimpleSourceDestinationMapper {

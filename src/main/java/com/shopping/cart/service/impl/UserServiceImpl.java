@@ -20,12 +20,11 @@ import java.util.Iterator;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
     }
 
     @Override
@@ -56,10 +55,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByEmail(email)
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("User Not Found with -> email : " + email)
-                );
-
+                .orElseThrow( () -> new UsernameNotFoundException("User Not Found with -> email : " + email));
         return UserPrinciple.build(user);
     }
 

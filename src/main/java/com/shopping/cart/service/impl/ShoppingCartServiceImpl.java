@@ -15,12 +15,11 @@ import java.util.List;
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;
-    private final ShoppingCartMapper shoppingCartՄapper;
+    private  ShoppingCartMapper shoppingCartMapper;
 
     @Autowired
-    public ShoppingCartServiceImpl(ShoppingCartRepository shoppingCartRepository, ShoppingCartMapper shoppingCartՄapper) {
+    public ShoppingCartServiceImpl(ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartRepository = shoppingCartRepository;
-        this.shoppingCartՄapper = shoppingCartՄapper;
     }
 
     public void addProductInUserCart(ShoppingCartDto shoppingCartDto) {
@@ -33,7 +32,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCartRepository.delete(entity);
     }
 
-    public Iterator<ShoppingCartDto> findProductInUserCartByUserId(String userId) {
-        return shoppingCartՄapper.entityListToDtoList(shoppingCartRepository.findByUserId(userId));
+    public Iterable<ShoppingCartDto> findProductInUserCartByUserId(String userId) {
+        return shoppingCartMapper.entityListToDtoList(shoppingCartRepository.findByUserId(userId));
     }
 }

@@ -15,24 +15,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        prePostEnabled = true
-)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserServiceImpl userService;
     private final JwtAuthEntryPoint unauthorizedHandler;
-    private final DataSource dataSource;
 
     @Autowired
-    public WebSecurityConfig(UserServiceImpl userService, JwtAuthEntryPoint unauthorizedHandler, DataSource dataSource) {
+    public WebSecurityConfig(UserServiceImpl userService, JwtAuthEntryPoint unauthorizedHandler) {
         this.userService = userService;
         this.unauthorizedHandler = unauthorizedHandler;
-        this.dataSource = dataSource;
     }
 
     @Bean
@@ -44,7 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
                 .passwordEncoder(passwordEncoder());
-
 //        auth.jdbcAuthentication()
 //                .dataSource(dataSource)
 //                .passwordEncoder(NoOpPasswordEncoder.getInstance())
@@ -55,14 +48,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                        "FROM user u " +
 //                        "WHERE u.username=?");
     }
-
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {
 //        web
 //                .ignoring()
 //                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 //    }
-
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -96,7 +87,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//
 //        http
 //                .authorizeRequests()
 //                .antMatchers("/").hasAnyAuthority("0, 1")
@@ -114,6 +104,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .logout()
 //                .permitAll();
-
     }
 }
