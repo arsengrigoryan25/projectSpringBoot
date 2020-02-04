@@ -9,6 +9,12 @@ public class RoleDto implements Serializable {
     private Long id;
     private RoleName name;
 
+    public RoleDto() { }
+    public RoleDto(Long id, RoleName name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

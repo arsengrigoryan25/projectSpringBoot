@@ -13,9 +13,13 @@ import java.util.List;
 
 public interface ShoppingCartService {
 
-    public void addProductInUserCart(ShoppingCartDto shoppingCartDto);
+    void addProductInUserCart(ShoppingCartDto shoppingCartDto);
 
-    public Iterable<ShoppingCartDto> getProductFromUserCartByUserId(Long userId);
+    Iterable<ShoppingCartDto> getProductByUserId(Long userId);
 
-    public void deleteProductInUserCart(ShoppingCartDto shoppingCartDto);
+    Iterable<ShoppingCartDto> getPendingProduct(Long userId);
+
+    void approvedProduct(ShoppingCartDto shoppingCartDto);
+
+    void deleteProductInUserCart(ShoppingCartDto shoppingCartDto);
 }

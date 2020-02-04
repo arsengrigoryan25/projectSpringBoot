@@ -6,6 +6,7 @@ import com.shopping.cart.filter.ProductFilter;
 import com.shopping.cart.filter.SortFilter;
 import com.shopping.cart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -23,6 +24,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public String createProduct(@RequestBody ProductDto productDto) {
         productDto.setAddedDate(new Date());
         productService.creatProduct(productDto);
@@ -30,6 +32,7 @@ public class ProductController {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateProducts(@RequestBody ProductDto productDto) {
         productService.updateProducts(productDto);
         return "";
@@ -51,6 +54,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{itemId}/delete")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteProduct(@PathVariable Long itemId) {
         productService.deleteProduct(itemId);
         return "";

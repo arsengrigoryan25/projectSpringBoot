@@ -69,45 +69,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/signin").permitAll()
                 .antMatchers("/user/create").permitAll()
+                .antMatchers("/signin").permitAll()
+                .antMatchers("/product/getAll").permitAll()
                 .antMatchers("/product/getByFilter").permitAll()
                 .antMatchers("/product/sortProducts").permitAll()
-                .antMatchers("/product/getAll").permitAll()
-                .antMatchers("/shopping-carts/addProductInUserCart").permitAll()
-//                .antMatchers("/signup").hasAnyAuthority("ROLE_USER, ROLE_ADMIN")
-//                .antMatchers("/signin").hasAnyAuthority("0, 1")
-//                .antMatchers("/**").permitAll()
-
-
-//                .antMatchers("/user/create").permitAll()
-//                .antMatchers("/product/getByFilter").permitAll()
-//                .antMatchers("/product/sortProducts").permitAll()
-//                .antMatchers("/product/getAll").permitAll()
-//                .antMatchers("/product/").hasAnyAuthority("0")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/").hasAnyAuthority("0, 1")
-//                .antMatchers("/addProduct").hasAnyAuthority("0, 1")
-//                .antMatchers("/createProduct").hasAnyAuthority("0, 1")
-//                .antMatchers("/createProductType").hasAnyAuthority("0, 1")
-//                .antMatchers("/createUser").hasAnyAuthority("0, 1")
-//                .antMatchers("/searchProduct").hasAnyAuthority("0, 1")
-//                .antMatchers("/updateProductType").hasAnyAuthority("0, 1")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
     }
 }

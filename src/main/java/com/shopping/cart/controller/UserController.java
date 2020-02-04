@@ -48,6 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -63,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> createUser(@Valid @RequestBody UserDto userDto){  // @Valid-???
         if(userRepository.existsByEmail(userDto.getEmail())) {
             return new ResponseEntity<String>("Fail -> Email is already in use!", HttpStatus.BAD_REQUEST);
@@ -109,21 +110,8 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteUser(@RequestParam Long id){
         return userService.deleteUser(id);
-    }
-
-
-
-    @GetMapping("/a")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public String userAccess() {
-        return ">>> User Contents!";
-    }
-
-    @GetMapping("/b")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String adminAccess() {
-        return ">>> Admin Contents";
     }
 }

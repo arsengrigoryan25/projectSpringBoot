@@ -1,8 +1,6 @@
 package com.shopping.cart.domain.entity;
 
 import com.shopping.cart.security.RoleName;
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -26,6 +24,12 @@ public class RoleEntity {
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<UserEntity> users;
+
+    public RoleEntity() { }
+    public RoleEntity(Long id, RoleName name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

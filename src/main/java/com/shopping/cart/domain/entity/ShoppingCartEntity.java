@@ -1,5 +1,8 @@
 package com.shopping.cart.domain.entity;
 
+import com.shopping.cart.BasketItemsStatus;
+import com.shopping.cart.security.RoleName;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,9 @@ public class ShoppingCartEntity {
     private Long productId;
     private Integer quantity;
 
+    @Enumerated(EnumType.STRING)
+    private BasketItemsStatus status;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private UserEntity users;
@@ -21,13 +27,14 @@ public class ShoppingCartEntity {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private ProductEntity product;
 
-    public ShoppingCartEntity() {
+    public ShoppingCartEntity() { }
+    public ShoppingCartEntity(Long userId, Long productId) {
     }
-
-    public ShoppingCartEntity(Long userId, Long productId, Integer quantity) {
+    public ShoppingCartEntity(Long userId, Long productId, Integer quantity, BasketItemsStatus status) {
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
+        this.status = status;
     }
 
     public Long getId() {
@@ -72,4 +79,10 @@ public class ShoppingCartEntity {
         this.product = product;
     }
 
+    public BasketItemsStatus getStatus() {
+        return status;
+    }
+    public void setStatus(BasketItemsStatus status) {
+        this.status = status;
+    }
 }
