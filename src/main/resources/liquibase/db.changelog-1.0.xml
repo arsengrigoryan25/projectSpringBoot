@@ -2,8 +2,6 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-
-
     <changeSet id="1.0.0" author="">
         <createTable tableName="users">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -50,7 +48,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="1.0.0" author="">
+    <changeSet id="1.0.3" author="">
         <createTable tableName="product">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -83,7 +81,7 @@
     </changeSet>
 
 
-    <changeSet id="1.0.0" author="">
+    <changeSet id="1.0.4" author="">
         <createTable tableName="shopping_cart">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -108,9 +106,7 @@
     </changeSet>
 
 
-
-
-    <changeSet id="1.0.3" author="">
+    <changeSet id="1.0.5" author="">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_roles"
                                  constraintName="fk_user_roles_user"
@@ -120,7 +116,7 @@
                                  referencedTableName="users"/>
     </changeSet>
 
-    <changeSet id="1.0.4" author="">
+    <changeSet id="1.0.6" author="">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="user_roles"
                                  constraintName="fk_user_roles_roles"
@@ -130,13 +126,46 @@
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <changeSet id="1.0.5" author="eugene.suleimanov">
+    <changeSet id="1.0.7" author="">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="shopping_cart"
+                                 constraintName="fk_shopping_cart_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="1.0.8" author="">
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="shopping_cart"
+                                 constraintName="fk_shopping_cart_product"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+    </changeSet>
+
+    <changeSet id="1.0.9" author="">
         <insert tableName="roles">
             <column name="name" value="ROLE_USER"/>
         </insert>
 
         <insert tableName="roles">
             <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="name" value="Admin"/>
+            <column name="surname" value="Admin"/>
+            <column name="email" value="admin"/>
+            <column name="password" value="admin"/>
+        </insert>
+
+        <insert tableName="role_user">
+            <column name="id" value="1"/>
+            <column name="name" value="1"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
