@@ -28,6 +28,8 @@ public class ShoppingCartEntity {
 
     public ShoppingCartEntity() { }
     public ShoppingCartEntity(Long userId, Long productId) {
+        this.productId = productId;
+        this.quantity = quantity;
     }
     public ShoppingCartEntity(Long userId, Long productId, Integer quantity, BasketItemsStatus status) {
         this.userId = userId;

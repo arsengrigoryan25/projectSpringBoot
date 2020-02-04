@@ -22,7 +22,6 @@ public class ProductEntity {
     private Set<ShoppingCartEntity> shoppingCartEntitySet;
 
     public ProductEntity() { }
-
     public ProductEntity(String name, String type, Integer price, Date addedDate, Date updatedDate, Integer countInStock) {
         this.name = name;
         this.type = type;
@@ -35,7 +34,6 @@ public class ProductEntity {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,7 +41,6 @@ public class ProductEntity {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -51,7 +48,6 @@ public class ProductEntity {
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
@@ -59,7 +55,6 @@ public class ProductEntity {
     public Integer getPrice() {
         return price;
     }
-
     public void setPrice(Integer price) {
         this.price = price;
     }
@@ -67,7 +62,6 @@ public class ProductEntity {
     public Date getAddedDate() {
         return addedDate;
     }
-
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
@@ -75,7 +69,6 @@ public class ProductEntity {
     public Date getUpdatedDate() {
         return updatedDate;
     }
-
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
@@ -83,7 +76,6 @@ public class ProductEntity {
     public Integer getCountInStock() {
         return countInStock;
     }
-
     public void setCountInStock(Integer countInStock) {
         this.countInStock = countInStock;
     }
@@ -91,7 +83,6 @@ public class ProductEntity {
     public Set<ShoppingCartEntity> getShoppingCartEntitySet() {
         return shoppingCartEntitySet;
     }
-
     public void setShoppingCartEntitySet(Set<ShoppingCartEntity> shoppingCartEntitySet) {
         this.shoppingCartEntitySet = shoppingCartEntitySet;
     }

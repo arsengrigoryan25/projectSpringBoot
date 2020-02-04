@@ -4,13 +4,6 @@ import com.shopping.cart.model.domain.enums.RoleName;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Simple domain object that represents application user's role - ADMIN, USER, etc.
- *
- * @author Eugene Suleimanov
- * @version 1.0
- */
-
 @Entity
 @Table(name = "roles")
 public class RoleEntity {
