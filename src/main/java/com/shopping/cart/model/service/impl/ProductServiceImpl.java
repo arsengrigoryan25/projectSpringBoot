@@ -5,7 +5,6 @@ import com.shopping.cart.model.domain.entity.ProductEntity;
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
 import com.shopping.cart.model.exception.CustomRuntimeException;
 import com.shopping.cart.model.filter.ProductFilter;
-//import com.shopping.cart.model.filter.SortFilter;
 import com.shopping.cart.model.service.mapper.ProductMapper;
 import com.shopping.cart.model.repository.ProductRepository;
 import com.shopping.cart.model.service.ProductService;

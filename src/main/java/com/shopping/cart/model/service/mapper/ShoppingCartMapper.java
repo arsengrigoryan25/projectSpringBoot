@@ -11,26 +11,3 @@ public interface ShoppingCartMapper {
     ShoppingCartDto entityToDto(ShoppingCartEntity entity);
     Iterable<ShoppingCartDto> entityListToDtoList(Iterable<ShoppingCartEntity> entity);
 }
-
-//public class SimpleSourceDestinationMapperImpl implements SimpleSourceDestinationMapper {
-//    @Override
-//    public SimpleDestination sourceToDestination(SimpleSource source) {
-//        if ( source == null ) {
-//            return null;
-//        }
-//        SimpleDestination simpleDestination = new SimpleDestination();
-//        simpleDestination.setName( source.getName() );
-//        simpleDestination.setDescription( source.getDescription() );
-//        return simpleDestination;
-//    }
-//    @Override
-//    public SimpleSource destinationToSource(SimpleDestination destination){
-//        if ( destination == null ) {
-//            return null;
-//        }
-//        SimpleSource simpleSource = new SimpleSource();
-//        simpleSource.setName( destination.getName() );
-//        simpleSource.setDescription( destination.getDescription() );
-//        return simpleSource;
-//    }
-//}

@@ -1,41 +1,31 @@
 package com.shopping.cart.model.domain.entity;
 
-import com.shopping.cart.model.domain.enums.BasketItemsStatus;
-
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "shopping_cart")
 public class ShoppingCartEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="user_id")
     private Long userId;
-    private Long productId;
-    private Integer quantity;
+    @Column(name="cart_id")
+    private Long cartId;
 
-    @Enumerated(EnumType.STRING)
-    private BasketItemsStatus status;
+    @OneToOne(mappedBy="shoppingCart", optional = false )
+    public UserEntity user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private UserEntity users;
+    @OneToMany(mappedBy="cart", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CartItemEntity> shoppingCart = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private ProductEntity product;
-
-    public ShoppingCartEntity() { }
-    public ShoppingCartEntity(Long userId, Long productId) {
-        this.productId = productId;
-        this.quantity = quantity;
-    }
-    public ShoppingCartEntity(Long userId, Long productId, Integer quantity, BasketItemsStatus status) {
+    public ShoppingCartEntity() {  }
+    public ShoppingCartEntity(Long userId,Long cartId) {
         this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.status = status;
+        this.cartId = cartId;
     }
 
     public Long getId() {
@@ -52,38 +42,20 @@ public class ShoppingCartEntity {
         this.userId = userId;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Long getCartId() {
+        return cartId;
     }
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
-    public UserEntity getUsers() {
-        return users;
-    }
-    public void setUsers(UserEntity users) {
-        this.users = users;
-    }
+    public UserEntity getUser() {return user;}
+    public void setUser(UserEntity user) {this.user = user;}
 
-    public ProductEntity getProduct() {
-        return product;
+    public Set<CartItemEntity> getShoppingCart() {
+        return shoppingCart;
     }
-    public void setProduct(ProductEntity product) {
-        this.product = product;
-    }
-
-    public BasketItemsStatus getStatus() {
-        return status;
-    }
-    public void setStatus(BasketItemsStatus status) {
-        this.status = status;
+    public void setShoppingCart(Set<CartItemEntity> shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

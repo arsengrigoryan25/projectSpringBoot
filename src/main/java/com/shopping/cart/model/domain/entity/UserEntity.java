@@ -9,24 +9,28 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="name")
     private String name;
+    @Column(name="surname")
     private String surname;
-//    @Column(unique = true)
+    @Column(name="email")
     private String email;
+    @Column(name="password")
     private String password;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ShoppingCartEntity> shoppingCartEntities;
+    @OneToOne(optional = false)
+    @JoinColumn(name="shopping_cart", unique = true, nullable = false, updatable = false, insertable = false)
+    private ShoppingCartEntity shoppingCart;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roles = new HashSet<>();
 
-    //TODO equals hashcode
     public UserEntity() {
     }
     public UserEntity(String name, String surname, String email, String password) {
@@ -71,12 +75,8 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Set<ShoppingCartEntity> getShoppingCartEntities() {
-        return shoppingCartEntities;
-    }
-    public void setShoppingCartEntities(Set<ShoppingCartEntity> shoppingCartEntities) {
-        this.shoppingCartEntities = shoppingCartEntities;
-    }
+    public ShoppingCartEntity getShoppingCart() { return shoppingCart;  }
+    public void setShoppingCart(ShoppingCartEntity shoppingCart) { this.shoppingCart = shoppingCart; }
 
     public Set<RoleEntity> getRoles() {
         return roles;

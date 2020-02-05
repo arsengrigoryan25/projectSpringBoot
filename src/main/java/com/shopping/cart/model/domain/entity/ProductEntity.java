@@ -9,7 +9,8 @@ import java.util.Set;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String type;
@@ -19,7 +20,7 @@ public class ProductEntity {
     private Integer countInStock;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ShoppingCartEntity> shoppingCartEntitySet;
+    private Set<CartItemEntity> cartItem;
 
     public ProductEntity() { }
     public ProductEntity(String name, String type, Integer price, Date createdDate, Date updatedDate, Integer countInStock) {
@@ -80,10 +81,10 @@ public class ProductEntity {
         this.countInStock = countInStock;
     }
 
-    public Set<ShoppingCartEntity> getShoppingCartEntitySet() {
-        return shoppingCartEntitySet;
+    public Set<CartItemEntity> getCartItem() {
+        return cartItem;
     }
-    public void setShoppingCartEntitySet(Set<ShoppingCartEntity> shoppingCartEntitySet) {
-        this.shoppingCartEntitySet = shoppingCartEntitySet;
+    public void setCartItem(Set<CartItemEntity> cartItem) {
+        this.cartItem = cartItem;
     }
 }

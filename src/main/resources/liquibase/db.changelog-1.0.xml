@@ -32,8 +32,8 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="name" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -90,6 +90,18 @@
             <column name="user_id" type="BIGINT" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.5" author="">
+        <createTable tableName="cart_item">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="cartId" type="BIGINT" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
 
             <column name="product_id" type="BIGINT" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -106,7 +118,7 @@
     </changeSet>
 
 
-    <changeSet id="1.0.5" author="">
+    <changeSet id="1.0.6" author="">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_roles"
                                  constraintName="fk_user_roles_user"
@@ -116,7 +128,7 @@
                                  referencedTableName="users"/>
     </changeSet>
 
-    <changeSet id="1.0.6" author="">
+    <changeSet id="1.0.7" author="">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="user_roles"
                                  constraintName="fk_user_roles_roles"
@@ -126,7 +138,7 @@
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <changeSet id="1.0.7" author="">
+    <changeSet id="1.0.8" author="">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="shopping_cart"
                                  constraintName="fk_shopping_cart_user"
@@ -137,8 +149,17 @@
     </changeSet>
 
     <changeSet id="1.0.8" author="">
+        <addForeignKeyConstraint baseColumnNames="cart_id"
+                                 baseTableName="cart_item"
+                                 constraintName="fk_shopping_cart_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="shopping_cart"/>
+    </changeSet>
+    <changeSet id="1.0.9" author="">
         <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="shopping_cart"
+                                 baseTableName="cart_item"
                                  constraintName="fk_shopping_cart_product"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
@@ -146,26 +167,30 @@
                                  referencedTableName="product"/>
     </changeSet>
 
-    <changeSet id="1.0.9" author="">
+    <changeSet id="1.0.10" author="">
         <insert tableName="roles">
+            <column name="id" value="1"/>
             <column name="name" value="ROLE_USER"/>
         </insert>
 
-<!--        <insert tableName="roles">-->
-<!--            <column name="name" value="ROLE_ADMIN"/>-->
-<!--        </insert>-->
 
-<!--        <insert tableName="users">-->
-<!--            <column name="id" value="1"/>-->
-<!--            <column name="name" value="Admin"/>-->
-<!--            <column name="surname" value="Admin"/>-->
-<!--            <column name="email" value="admin"/>-->
-<!--            <column name="password" value="admin"/>-->
-<!--        </insert>-->
 
-<!--        <insert tableName="role_user">-->
-<!--            <column name="id" value="1"/>-->
-<!--            <column name="name" value="1"/>-->
-<!--        </insert>-->
+        <insert tableName="roles">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="name" value="Admin"/>
+            <column name="surname" value="Admin"/>
+            <column name="email" value="admin"/>
+            <column name="password" value="$2a$10$e3k3qKezkN3LMez1YPKkPeP8TDHknGZqiIya9hePClTnRzgC.T1u2"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
