@@ -22,7 +22,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCartDto createCart(ShoppingCartDto shoppingCartDto) {
-        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId());
+        ShoppingCartEntity entity = new ShoppingCartEntity(shoppingCartDto.getUserId(),shoppingCartDto.getCartId());
         return shoppingCartMapper.entityToDto(shoppingCartRepository.save(entity));
     }
 
