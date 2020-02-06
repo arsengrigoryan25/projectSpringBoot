@@ -62,15 +62,15 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItemDto approvedItems(CartItemDto cartItemDto) {
+    public CartItemDto approvedItems(CartItemDto dto) {
 
-        CartItemEntity entity = cartItemRepository.findById(cartItemDto.getId()).get();
+        CartItemEntity entity = cartItemRepository.findById(dto.getId()).get();
         entity.setStatus(BasketItemsStatus.APPROVED);
         entity = cartItemRepository.save(entity);
 
-        CartItemDto cartItem = cartItemMapper.entityToDto(entity);
+        dto = cartItemMapper.entityToDto(entity);
 
-        return cartItem;
+        return dto;
     }
 
     @Override
