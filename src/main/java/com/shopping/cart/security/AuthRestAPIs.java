@@ -4,8 +4,8 @@
 //import com.shopping.cart.model.domain.entity.UserEntity;
 //import com.shopping.cart.message.request.LoginForm;
 //import com.shopping.cart.security.JwtResponse;
-//import com.shopping.cart.model.repository.RoleRepository;
-//import com.shopping.cart.model.repository.UserRepository;
+//import com.shopping.cart.repository.RoleRepository;
+//import com.shopping.cart.repository.UserRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.ResponseEntity;

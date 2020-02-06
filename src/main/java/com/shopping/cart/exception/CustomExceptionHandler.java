@@ -1,4 +1,4 @@
-package com.shopping.cart.model.exception;
+package com.shopping.cart.exception;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

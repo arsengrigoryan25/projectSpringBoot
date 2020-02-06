@@ -1,9 +1,7 @@
-package com.shopping.cart.model.service.mapper;
+package com.shopping.cart.service.mapper;
 
 import com.shopping.cart.model.domain.dto.CartItemDto;
-import com.shopping.cart.model.domain.dto.ShoppingCartDto;
 import com.shopping.cart.model.domain.entity.CartItemEntity;
-import com.shopping.cart.model.domain.entity.ShoppingCartEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

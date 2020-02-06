@@ -1,7 +1,7 @@
 package com.shopping.cart.controller;
 
 import com.shopping.cart.model.domain.dto.CartItemDto;
-import com.shopping.cart.model.service.CartItemService;
+import com.shopping.cart.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

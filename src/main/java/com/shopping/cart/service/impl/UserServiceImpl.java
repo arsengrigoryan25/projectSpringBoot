@@ -1,13 +1,13 @@
-package com.shopping.cart.model.service.impl;
+package com.shopping.cart.service.impl;
 
 import com.shopping.cart.model.domain.dto.UserDto;
 import com.shopping.cart.model.domain.entity.UserEntity;
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
-import com.shopping.cart.model.exception.CustomRuntimeException;
-import com.shopping.cart.model.service.mapper.UserMapper;
-import com.shopping.cart.model.repository.UserRepository;
+import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.service.mapper.UserMapper;
+import com.shopping.cart.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
-import com.shopping.cart.model.service.UserService;
+import com.shopping.cart.service.UserService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

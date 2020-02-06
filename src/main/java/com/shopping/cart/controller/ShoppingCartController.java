@@ -2,9 +2,8 @@ package com.shopping.cart.controller;
 
 import com.shopping.cart.model.domain.dto.CartItemDto;
 import com.shopping.cart.model.domain.dto.ShoppingCartDto;
-import com.shopping.cart.model.service.ShoppingCartService;
+import com.shopping.cart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/shopping-carts")

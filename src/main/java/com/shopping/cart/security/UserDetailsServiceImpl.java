@@ -1,7 +1,7 @@
 //package com.shopping.cart.security;
 //
 //import com.shopping.cart.model.domain.entity.UserEntity;
-//import com.shopping.cart.model.repository.UserRepository;
+//import com.shopping.cart.repository.UserRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;

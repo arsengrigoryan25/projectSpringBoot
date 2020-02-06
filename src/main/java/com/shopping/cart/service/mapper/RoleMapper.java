@@ -1,4 +1,4 @@
-package com.shopping.cart.model.service.mapper;
+package com.shopping.cart.service.mapper;
 
 import com.shopping.cart.model.domain.dto.RoleDto;
 import com.shopping.cart.model.domain.entity.RoleEntity;

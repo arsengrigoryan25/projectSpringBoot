@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
-import com.shopping.cart.model.exception.CustomRuntimeException;
-import com.shopping.cart.model.service.impl.UserServiceImpl;
+import com.shopping.cart.exception.CustomRuntimeException;
+import com.shopping.cart.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

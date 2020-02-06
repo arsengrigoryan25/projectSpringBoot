@@ -1,4 +1,4 @@
-//package com.shopping.cart.model.service.mapper;
+//package com.shopping.cart.service.mapper;
 //
 //import org.mapstruct.Mapper;
 //import org.mapstruct.factory.Mappers;

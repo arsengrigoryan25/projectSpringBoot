@@ -1,4 +1,4 @@
-package com.shopping.cart.model.repository;
+package com.shopping.cart.repository;
 
 import com.shopping.cart.model.domain.entity.CartItemEntity;
 import com.shopping.cart.model.domain.enums.BasketItemsStatus;

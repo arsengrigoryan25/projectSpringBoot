@@ -1,4 +1,4 @@
-package com.shopping.cart.model.service;
+package com.shopping.cart.service;
 
 import com.shopping.cart.model.domain.dto.CartItemDto;
 

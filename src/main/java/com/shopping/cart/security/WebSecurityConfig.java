@@ -1,8 +1,6 @@
 package com.shopping.cart.security;
 
-import com.shopping.cart.model.domain.enums.BasketItemsStatus;
-import com.shopping.cart.model.domain.enums.RoleName;
-import com.shopping.cart.model.service.impl.UserServiceImpl;
+import com.shopping.cart.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

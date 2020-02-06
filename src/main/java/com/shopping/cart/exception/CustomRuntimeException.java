@@ -1,4 +1,4 @@
-package com.shopping.cart.model.exception;
+package com.shopping.cart.exception;
 
 import com.shopping.cart.model.domain.enums.ErrorMessageEnum;
 

@@ -1,13 +1,12 @@
-package com.shopping.cart.model.service.impl;
+package com.shopping.cart.service.impl;
 
 import com.shopping.cart.model.domain.dto.ShoppingCartDto;
 import com.shopping.cart.model.domain.entity.ShoppingCartEntity;
-import com.shopping.cart.model.repository.CartItemRepository;
-import com.shopping.cart.model.repository.UserRepository;
-import com.shopping.cart.model.service.mapper.CartItemMapper;
-import com.shopping.cart.model.service.mapper.ShoppingCartMapper;
-import com.shopping.cart.model.repository.ShoppingCartRepository;
-import com.shopping.cart.model.service.ShoppingCartService;
+import com.shopping.cart.repository.CartItemRepository;
+import com.shopping.cart.repository.UserRepository;
+import com.shopping.cart.service.mapper.ShoppingCartMapper;
+import com.shopping.cart.repository.ShoppingCartRepository;
+import com.shopping.cart.service.ShoppingCartService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

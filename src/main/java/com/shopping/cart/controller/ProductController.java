@@ -2,7 +2,7 @@ package com.shopping.cart.controller;
 
 import com.shopping.cart.model.domain.dto.ProductDto;
 import com.shopping.cart.model.filter.ProductFilter;
-import com.shopping.cart.model.service.ProductService;
+import com.shopping.cart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
