@@ -1,6 +1,5 @@
 package com.shopping.cart.model.domain.dto;
 
-import com.shopping.cart.model.domain.enums.BasketItemsStatus;
 import java.io.Serializable;
 
 public class ShoppingCartDto implements Serializable {
@@ -8,13 +7,13 @@ public class ShoppingCartDto implements Serializable {
 
 	private Long id;
 	private Long userId;
-	private Long cartId;
+	private Long itemId;
 
 	public ShoppingCartDto() { }
 	public ShoppingCartDto(Long id, Long userId, Long cartId) {
 		this.id = id;
 		this.userId = userId;
-		this.cartId = cartId;
+		this.itemId = itemId;
 	}
 
 	public Long getId() {
@@ -31,10 +30,10 @@ public class ShoppingCartDto implements Serializable {
 		this.userId = userId;
 	}
 
-	public Long getCartId() {
-		return cartId;
+	public Long getItemId() {
+		return itemId;
 	}
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 }

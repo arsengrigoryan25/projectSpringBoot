@@ -21,9 +21,13 @@ public class UserEntity {
     @Column(name="password")
     private String password;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="shopping_cart", unique = true, nullable = false, updatable = false, insertable = false)
-    private ShoppingCartEntity shoppingCart;
+//    @OneToOne(optional = false)
+//    @JoinColumn(name="shopping_cart", unique = true, nullable = false, updatable = false, insertable = false)
+//    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<CartItemEntity> items;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ShoppingCartEntity> items;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
@@ -75,8 +79,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public ShoppingCartEntity getShoppingCart() { return shoppingCart;  }
-    public void setShoppingCart(ShoppingCartEntity shoppingCart) { this.shoppingCart = shoppingCart; }
+    public Set<ShoppingCartEntity> getItems() {
+        return items;
+    }
+    public void setItems(Set<ShoppingCartEntity> items) {
+        this.items = items;
+    }
 
     public Set<RoleEntity> getRoles() {
         return roles;

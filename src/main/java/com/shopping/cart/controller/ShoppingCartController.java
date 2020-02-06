@@ -1,5 +1,6 @@
 package com.shopping.cart.controller;
 
+import com.shopping.cart.model.domain.dto.CartItemDto;
 import com.shopping.cart.model.domain.dto.ShoppingCartDto;
 import com.shopping.cart.model.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,19 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
     }
 
-    @GetMapping("/getProductsFromUserCart/{userId}")
+    @GetMapping("/getItemsByUserId/{userId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ShoppingCartDto getCartByUserId(@PathVariable Long userId){
-        return shoppingCartService.getCartByUserId(userId);
+    public ShoppingCartDto getItemsByUserId(@PathVariable Long userId){
+        return shoppingCartService.getItemsByUserId(userId);
     }
 
+    @GetMapping("/createCart")
+    public ShoppingCartDto createCart(@RequestBody ShoppingCartDto shoppingCartDto, @RequestBody CartItemDto cartItemDto ) {
+        return shoppingCartService.createCart(shoppingCartDto);
+    }
+
+    @DeleteMapping("/deleteItems/{cartId}")
+    public Long deleteItemsByCartId(@PathVariable Long cartId){
+        return shoppingCartService.deleteItemsByCartId(cartId);
+    }
 }

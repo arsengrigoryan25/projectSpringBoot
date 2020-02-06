@@ -80,7 +80,6 @@
         </createTable>
     </changeSet>
 
-
     <changeSet id="1.0.4" author="">
         <createTable tableName="shopping_cart">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -88,7 +87,11 @@
             </column>
 
             <column name="user_id" type="BIGINT" >
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="item_id" type="BIGINT" >
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -96,10 +99,6 @@
     <changeSet id="1.0.5" author="">
         <createTable tableName="cart_item">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-
-            <column name="cartId" type="BIGINT" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
@@ -147,17 +146,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-
-    <changeSet id="1.0.8" author="">
-        <addForeignKeyConstraint baseColumnNames="cart_id"
-                                 baseTableName="cart_item"
-                                 constraintName="fk_shopping_cart_user"
+    <changeSet id="1.0.9" author="">
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="shopping_cart"
+                                 constraintName="fk_shopping_cart_item"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="shopping_cart"/>
+                                 referencedTableName="cart_item"/>
     </changeSet>
-    <changeSet id="1.0.9" author="">
+
+    <changeSet id="1.0.10" author="">
         <addForeignKeyConstraint baseColumnNames="product_id"
                                  baseTableName="cart_item"
                                  constraintName="fk_shopping_cart_product"
@@ -167,13 +166,11 @@
                                  referencedTableName="product"/>
     </changeSet>
 
-    <changeSet id="1.0.10" author="">
+    <changeSet id="1.0.11" author="">
         <insert tableName="roles">
             <column name="id" value="1"/>
             <column name="name" value="ROLE_USER"/>
         </insert>
-
-
 
         <insert tableName="roles">
             <column name="id" value="2"/>

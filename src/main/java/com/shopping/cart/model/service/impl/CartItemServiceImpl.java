@@ -24,14 +24,15 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItemDto addItemInUserCart(CartItemDto cartItem) {
-        CartItemEntity entity = new CartItemEntity(cartItem.getCartId(),cartItem.getProductId(),cartItem.getQuantity(),BasketItemsStatus.PENDING);
+    public CartItemDto createItem(CartItemDto cartItem) {
+        CartItemEntity entity = new CartItemEntity(cartItem.getProductId(),cartItem.getQuantity(),BasketItemsStatus.PENDING);
         return cartItemMapper.entityToDto(cartItemRepository.save(entity));
     }
 
+
     @Override
-    public Iterable<CartItemDto> getProductByCartId(Long cartId) {
-        return cartItemMapper.entityListToDtoList(cartItemRepository.findByCartId(cartId));
+    public CartItemDto getItemsById(Long id) {
+        return cartItemMapper.optionalEntityToDto(cartItemRepository.findById(id));
     }
 
     @Override
@@ -47,9 +48,9 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItemDto deleteItemInUserCart(CartItemDto cartItem) {
+    public CartItemDto deleteItem(CartItemDto cartItem) {
         try {
-            CartItemEntity entity = new CartItemEntity(cartItem.getCartId(), cartItem.getProductId());
+            CartItemEntity entity = new CartItemEntity(cartItem.getProductId());
             cartItemRepository.delete(entity);
         } catch (EmptyResultDataAccessException e) {
             throw new CustomRuntimeException(ErrorMessageEnum.USER_NOT_FOUND);

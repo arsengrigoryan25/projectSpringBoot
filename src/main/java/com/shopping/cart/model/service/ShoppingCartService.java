@@ -5,6 +5,6 @@ import com.shopping.cart.model.domain.dto.ShoppingCartDto;
 public interface ShoppingCartService {
 
     ShoppingCartDto createCart(ShoppingCartDto shoppingCartDto);
-    ShoppingCartDto getCartByUserId(Long userId);
-    Long deleteCartByUserId(Long userId);
+    ShoppingCartDto getItemsByUserId(Long userId);
+    Long deleteItemsByCartId(Long userId);
 }

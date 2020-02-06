@@ -5,7 +5,7 @@ import com.shopping.cart.model.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/shopping-carts")
+@RequestMapping("/cart_item")
 @RestController
 public class CartItemController {
 
@@ -16,14 +16,14 @@ public class CartItemController {
         this.cartItemService = cartItemService;
     }
 
-    @PostMapping("/addItemInCart")
-    public CartItemDto addItemInUserCart(@RequestBody CartItemDto cartItem){
-        return cartItemService.addItemInUserCart(cartItem);
+    @PostMapping("/create")
+    public CartItemDto createItem(@RequestBody CartItemDto cartItem){
+        return cartItemService.createItem(cartItem);
     }
 
-    @GetMapping("/getProductByCartId/{cartId}")
-    public Iterable<CartItemDto> getProductByCartId(@PathVariable Long cartId){
-        return cartItemService.getProductByCartId(cartId);
+    @GetMapping("/getItemsById/{userId}")
+    public CartItemDto getItemsById(@PathVariable Long id) {
+        return cartItemService.getItemsById(id);
     }
 
     @GetMapping("/getAllPendingItems")
@@ -32,12 +32,12 @@ public class CartItemController {
     }
 
     @GetMapping("/approvedItems")
-    public CartItemDto approvedItemsInCart(@RequestBody CartItemDto cartItem){
+    public CartItemDto approvedItems(@RequestBody CartItemDto cartItem){
         return cartItemService.approvedItems(cartItem);
     }
 
-    @DeleteMapping("/deleteItemInUserCart")
-    public void deleteItemInUserCart(@RequestBody CartItemDto cartItem){
-        cartItemService.deleteItemInUserCart(cartItem);
+    @DeleteMapping("/deleteItem")
+    public void deleteItem(@RequestBody CartItemDto cartItem){
+        cartItemService.deleteItem(cartItem);
     }
 }

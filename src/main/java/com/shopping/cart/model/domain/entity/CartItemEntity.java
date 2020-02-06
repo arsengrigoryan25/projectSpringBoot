@@ -13,8 +13,6 @@ public class CartItemEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	protected Long id = null;
-	@Column(name="cart_id")
-	private Long cartId;
 	@Column(name="product_id")
 	private Long productId;
 	@Column(name="quantity")
@@ -23,21 +21,19 @@ public class CartItemEntity {
 	@Enumerated(EnumType.STRING)
 	private BasketItemsStatus status;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_cart", nullable=false)
-	private ShoppingCartEntity cart;
+	@OneToOne(optional = false)
+	@JoinColumn(name="id", nullable = false, updatable = false)
+	private ShoppingCartEntity shoppingCart;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "id_product", nullable = false)
+	@JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
 	private ProductEntity product;
 
 	public CartItemEntity() { }
-	public CartItemEntity( Long cartId,Long productId) {
-		this.cartId = cartId;
+	public CartItemEntity( Long productId) {
 		this.productId = productId;
 	}
-	public CartItemEntity( Long cartId,Long productId, Integer quantity, BasketItemsStatus status) {
-		this.cartId = cartId;
+	public CartItemEntity( Long productId, Integer quantity, BasketItemsStatus status) {
 		this.productId = productId;
 		this.quantity = quantity;
 		this.status = status;
@@ -48,13 +44,6 @@ public class CartItemEntity {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCartId() {
-		return cartId;
-	}
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
 	}
 
 	public Long getProductId() {
@@ -78,25 +67,23 @@ public class CartItemEntity {
 		this.status = status;
 	}
 
-	public ShoppingCartEntity getCart() {
-		return cart;
-	}
-	public void setCart(ShoppingCartEntity cart) {
-		this.cart = cart;
-	}
-
 	public ProductEntity getProduct() { return product; }
 	public void setProduct(ProductEntity product) { this.product = product; }
+
+	public ShoppingCartEntity getShoppingCart() {
+		return shoppingCart;
+	}
+	public void setShoppingCart(ShoppingCartEntity shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37)
 				.append(id)
-				.append(cartId)
 				.append(productId)
 				.append(quantity)
 				.append(status)
-				.append(cart)
 				.append(product)
 				.toHashCode();
 	}
@@ -117,11 +104,9 @@ public class CartItemEntity {
 		final CartItemEntity other = (CartItemEntity) obj;
 		return new EqualsBuilder()
 				.append(id, other.id)
-				.append(cartId,other.cartId)
 				.append(productId,other.productId)
 				.append(quantity,other.quantity)
 				.append(status,other.status)
-				.append(cart, other.cart)
 				.append(product, other.product)
 				.append(quantity, other.quantity)
 				.isEquals();

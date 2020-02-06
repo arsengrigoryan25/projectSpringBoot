@@ -22,7 +22,13 @@ public class ProductEntity {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CartItemEntity> cartItem;
 
-    public ProductEntity() { }
+    public ProductEntity(String name, String type, Integer price, Date createdDate, Integer countInStock) {
+        this.name = name;
+        this.type = type;
+        this.price = price;
+        this.createdDate = createdDate;
+        this.countInStock = countInStock;
+    }
     public ProductEntity(String name, String type, Integer price, Date createdDate, Date updatedDate, Integer countInStock) {
         this.name = name;
         this.type = type;

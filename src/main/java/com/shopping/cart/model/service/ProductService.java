@@ -6,10 +6,9 @@ import com.shopping.cart.model.filter.ProductFilter;
 
 public interface ProductService {
 
-    public ProductDto creatProduct(ProductDto product);
-    public Long deleteProduct(Long id);
-    public ProductDto updateProducts(ProductDto productDto);
-    public Iterable<ProductDto> getAllProducts();
-    public Iterable<ProductDto> getProductsByFilter(ProductFilter filter);
-//    public Iterable<ProductDto> sortProducts(SortFilter filter) ;
+    ProductDto creatProduct(ProductDto product);
+    Long deleteProduct(Long id);
+    ProductDto updateProducts(ProductDto productDto);
+    Iterable<ProductDto> getAllProducts();
+    Iterable<ProductDto> getProductsByFilter(ProductFilter filter);
 }
