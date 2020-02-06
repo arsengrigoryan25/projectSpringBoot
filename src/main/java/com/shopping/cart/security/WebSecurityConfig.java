@@ -1,5 +1,6 @@
 package com.shopping.cart.security;
 
+import com.shopping.cart.model.domain.enums.RoleName;
 import com.shopping.cart.model.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,18 +56,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/**").permitAll()
+//                .antMatchers("/**").permitAll()
                 .antMatchers("/user/create").permitAll()
                 .antMatchers("/user/signin").permitAll()
+                .antMatchers("/user/find").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/user/delete").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/product/create").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/product/update").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/product/delete/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/product/getAll").permitAll()
                 .antMatchers("/product/getByFilter").permitAll()
                 .antMatchers("/product/sortProducts").permitAll()
-                .antMatchers("/product/create").permitAll()
+                .antMatchers("/shopping-carts/getItemsByUserId/**").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
+                .antMatchers("/shopping-carts/createCart").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
+                .antMatchers("/shopping-carts/deleteItems/**").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
+                .antMatchers("/cart-item/create").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
+                .antMatchers("/cart-item/getItemsById").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
+                .antMatchers("/cart-item/getAllPendingItems").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/cart-item/approvedItems").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/cart-item/deleteItem").hasAnyAuthority("ROLE_USER" , "ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

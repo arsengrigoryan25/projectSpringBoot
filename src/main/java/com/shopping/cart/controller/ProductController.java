@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ProductDto updateProducts(@RequestBody ProductDto productDto) {
         return productService.updateProducts(productDto);
     }
@@ -50,8 +50,8 @@ public class ProductController {
 //        return productService.sortProducts(filter);
 //    }
 
-    @DeleteMapping("/{itemId}/delete")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{itemId}")
+//    @PreAuthorize("hasRole('ADMIN')")
     public Long deleteProduct(@PathVariable Long itemId) {
         return productService.deleteProduct(itemId);
     }

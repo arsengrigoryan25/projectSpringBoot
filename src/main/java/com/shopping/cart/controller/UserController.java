@@ -98,13 +98,13 @@ public class UserController {
     }
 
     @GetMapping("/find")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<UserDto> getAllUsers(){
         return userService.getAllUsers();
     }
 
     @DeleteMapping("/delete")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public Long deleteUser(@RequestParam Long id){
         return userService.deleteUser(id);
     }

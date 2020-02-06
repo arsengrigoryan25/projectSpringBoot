@@ -19,7 +19,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/getItemsByUserId/{userId}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ShoppingCartDto getItemsByUserId(@PathVariable Long userId){
         return shoppingCartService.getItemsByUserId(userId);
     }
