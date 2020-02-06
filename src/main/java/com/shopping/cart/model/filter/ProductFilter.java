@@ -11,7 +11,9 @@ public class ProductFilter implements Serializable {
     private Integer toPrice;
     private boolean isAscending;
 
-    public ProductFilter() { }
+    public ProductFilter() {
+    }
+
     public ProductFilter(String name, String type, Integer fromPrice, Integer toPrice, boolean isAscending) {
         this.name = name;
         this.type = type;
@@ -23,6 +25,7 @@ public class ProductFilter implements Serializable {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -30,6 +33,7 @@ public class ProductFilter implements Serializable {
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }

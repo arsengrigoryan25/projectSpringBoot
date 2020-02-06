@@ -2,9 +2,9 @@ package com.shopping.cart.model.domain.enums;
 
 public enum ErrorMessageEnum {
     PRODUCT_NOT_FOUND(10, "Product is not found"),
-    USER_NOT_FOUND(20,"User is not found!"),
-    USER_EXIST(21,"User already exists"),
-    USER_NOT_AUTH(21,"User can't set user authentication"),
+    USER_NOT_FOUND(20, "User is not found!"),
+    USER_EXIST(21, "User already exists"),
+    USER_NOT_AUTH(21, "User can't set user authentication"),
 
 //    PARAM_ERROR(1, "Parameter Error!"),
 //    PRODUCT_NOT_EXIST(10, "Product does not exit!"),
@@ -33,6 +33,7 @@ public enum ErrorMessageEnum {
     public Integer getCode() {
         return code;
     }
+
     public void setCode(Integer code) {
         this.code = code;
     }
@@ -40,6 +41,7 @@ public enum ErrorMessageEnum {
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }

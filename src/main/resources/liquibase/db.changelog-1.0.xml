@@ -86,12 +86,12 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="user_id" type="BIGINT" >
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="item_id" type="BIGINT" >
-                <constraints nullable="false"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_users"
+                             referencedTableName="users"
+                             referencedColumnNames="id"
+                             deleteCascade="true"/>
             </column>
         </createTable>
     </changeSet>
@@ -102,79 +102,87 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="product_id" type="BIGINT" >
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-
-            <column name="quantity" type="INT">
+            <column name="quantity" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
 
             <column name="status" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="shopping_cart_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_shopping_cart"
+                             referencedTableName="shopping_cart"
+                             referencedColumnNames="id"
+                             deleteCascade="true"/>
+            </column>
+
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_product"
+                             referencedTableName="product"
+                             referencedColumnNames="id"
+                             deleteCascade="true"/>
+            </column>
         </createTable>
     </changeSet>
+    <!--
+        <changeSet id="1.0.6" author="">
+            <addForeignKeyConstraint baseColumnNames="user_id"
+                                     baseTableName="user_roles"
+                                     constraintName="fk_user_roles_user"
+                                     onDelete="CASCADE"
+                                     onUpdate="RESTRICT"
+                                     referencedColumnNames="id"
+                                     referencedTableName="users"/>
+        </changeSet>
 
+        <changeSet id="1.0.7" author="">
+            <addForeignKeyConstraint baseColumnNames="role_id"
+                                     baseTableName="user_roles"
+                                     constraintName="fk_user_roles_roles"
+                                     onDelete="CASCADE"
+                                     onUpdate="RESTRICT"
+                                     referencedColumnNames="id"
+                                     referencedTableName="roles"/>
+        </changeSet>
 
+        <changeSet id="1.0.8" author="">
+            <addForeignKeyConstraint baseColumnNames="user_id"
+                                     baseTableName="shopping_cart"
+                                     constraintName="fk_shopping_cart_user"
+                                     onDelete="CASCADE"
+                                     onUpdate="RESTRICT"
+                                     referencedColumnNames="id"
+                                     referencedTableName="users"/>
+        </changeSet>
+        <changeSet id="1.0.9" author="">
+            <addForeignKeyConstraint baseColumnNames="item_id"
+                                     baseTableName="shopping_cart"
+                                     constraintName="fk_shopping_cart_item"
+                                     onDelete="CASCADE"
+                                     onUpdate="RESTRICT"
+                                     referencedColumnNames="id"
+                                     referencedTableName="cart_item"/>
+        </changeSet>
+
+        <changeSet id="1.0.10" author="">
+            <addForeignKeyConstraint baseColumnNames="product_id"
+                                     baseTableName="cart_item"
+                                     constraintName="fk_shopping_cart_product"
+                                     onDelete="CASCADE"
+                                     onUpdate="RESTRICT"
+                                     referencedColumnNames="id"
+                                     referencedTableName="product"/>
+        </changeSet>-->
     <changeSet id="1.0.6" author="">
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_user"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="users"/>
-    </changeSet>
-
-    <changeSet id="1.0.7" author="">
-        <addForeignKeyConstraint baseColumnNames="role_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_roles"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="roles"/>
-    </changeSet>
-
-    <changeSet id="1.0.8" author="">
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="shopping_cart"
-                                 constraintName="fk_shopping_cart_user"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="users"/>
-    </changeSet>
-    <changeSet id="1.0.9" author="">
-        <addForeignKeyConstraint baseColumnNames="item_id"
-                                 baseTableName="shopping_cart"
-                                 constraintName="fk_shopping_cart_item"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="cart_item"/>
-    </changeSet>
-
-    <changeSet id="1.0.10" author="">
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="cart_item"
-                                 constraintName="fk_shopping_cart_product"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="product"/>
-    </changeSet>
-
-    <changeSet id="1.0.11" author="">
-        <insert tableName="roles">
-            <column name="id" value="1"/>
-            <column name="name" value="ROLE_USER"/>
-        </insert>
 
         <insert tableName="roles">
-            <column name="id" value="2"/>
             <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_USER"/>
         </insert>
 
         <insert tableName="users">

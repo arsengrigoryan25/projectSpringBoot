@@ -1,21 +1,21 @@
 package com.shopping.cart.model.domain.dto;
 
 import com.shopping.cart.model.domain.enums.BasketItemsStatus;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import java.io.Serializable;
 
-public class CartItemDto {
+public class CartItemDto implements Serializable {
+	private static final long serialVersionUID = -3025972883975859631L;
 	private Long id;
-	private Long cartId;
-	private Long productId;
 	private Integer quantity;
 	private BasketItemsStatus status;
+	private ShoppingCartDto shoppingCart;
+	private ProductDto product;
 
 	public CartItemDto() { }
-	public CartItemDto(Long id,Long productId, Long cartId, Integer quantity, BasketItemsStatus status) {
+	public CartItemDto(Long id, ShoppingCartDto shoppingCart, ProductDto product,  Integer quantity, BasketItemsStatus status) {
 		this.id = id;
-		this.cartId = cartId;
-		this.productId = productId;
+		this.shoppingCart = shoppingCart;
+		this.product = product;
 		this.quantity = quantity;
 		this.status = status;
 	}
@@ -25,20 +25,6 @@ public class CartItemDto {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCartId() {
-		return cartId;
-	}
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
-	}
-
-	public Long getProductId() {
-		return productId;
-	}
-	public void setProductId(Long productId) {
-		this.productId = productId;
 	}
 
 	public Integer getQuantity() {
@@ -55,36 +41,17 @@ public class CartItemDto {
 		this.status = status;
 	}
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id)
-										  	.append(cartId)
-										  	.append(productId)
-										  	.append(quantity)
-										  	.append(status)
-										  	.toHashCode();
+	public ShoppingCartDto getShoppingCart() {
+		return shoppingCart;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		
-		if (obj == null) {
-			return false;
-		}
-		
-		if (getClass() != obj.getClass()) {
-			return false;
-		}	
-		
-		final CartItemDto other = (CartItemDto) obj;
-		return new EqualsBuilder().append(id, other.id)
-									.append(cartId,other.cartId)
-									.append(productId,other.productId)
-									.append(quantity,other.quantity)
-									.append(status,other.status)
-								  	.append(quantity, other.quantity)
-								  .isEquals();
+	public void setShoppingCart(ShoppingCartDto shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	public ProductDto getProduct() {
+		return product;
+	}
+	public void setProduct(ProductDto product) {
+		this.product = product;
 	}
 }

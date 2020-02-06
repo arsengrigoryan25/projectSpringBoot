@@ -19,18 +19,17 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/getItemsByUserId/{userId}")
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ShoppingCartDto getItemsByUserId(@PathVariable Long userId){
         return shoppingCartService.getItemsByUserId(userId);
     }
 
-    @GetMapping("/createCart")
+    @GetMapping("/create")
     public ShoppingCartDto createCart(@RequestBody ShoppingCartDto shoppingCartDto, @RequestBody CartItemDto cartItemDto ) {
         return shoppingCartService.createCart(shoppingCartDto);
     }
 
-    @DeleteMapping("/deleteItems/{cartId}")
-    public Long deleteItemsByCartId(@PathVariable Long cartId){
-        return shoppingCartService.deleteItemsByCartId(cartId);
+    @DeleteMapping("/deleteItems")
+    public ShoppingCartDto deleteItemsByCart(@RequestBody ShoppingCartDto shoppingCartDto){
+        return shoppingCartService.deleteItemsByCart(shoppingCartDto);
     }
 }

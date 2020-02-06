@@ -1,12 +1,9 @@
 package com.shopping.cart.controller;
 
 import com.shopping.cart.model.domain.dto.ProductDto;
-import com.shopping.cart.model.domain.entity.ProductEntity;
 import com.shopping.cart.model.filter.ProductFilter;
-//import com.shopping.cart.model.filter.SortFilter;
 import com.shopping.cart.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -23,14 +20,12 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
         productDto.setCreatedDate(new Date());
         return productService.creatProduct(productDto);
     }
 
     @PutMapping("/update")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ProductDto updateProducts(@RequestBody ProductDto productDto) {
         return productService.updateProducts(productDto);
     }
@@ -51,7 +46,6 @@ public class ProductController {
 //    }
 
     @DeleteMapping("/delete/{itemId}")
-//    @PreAuthorize("hasRole('ADMIN')")
     public Long deleteProduct(@PathVariable Long itemId) {
         return productService.deleteProduct(itemId);
     }

@@ -8,6 +8,7 @@ import com.shopping.cart.model.service.mapper.UserMapper;
 import com.shopping.cart.model.repository.UserRepository;
 import com.shopping.cart.security.UserPrinciple;
 import com.shopping.cart.model.service.UserService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,28 +22,38 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+        userMapper= Mappers.getMapper(UserMapper.class);
     }
 
     @Override
-    public UserDto creatUser(UserEntity dto) {
-        UserEntity entity = new UserEntity(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getPassword());
+    public UserDto creatUser(UserDto dto) {
+
+        UserEntity entity = userMapper.dtoToEntity(dto);
         try {
-            return userMapper.entityToDto(userRepository.save(entity));
+            entity = userRepository.save(entity);
+            dto = userMapper.entityToDto(entity);
+
+            return dto;
         } catch (DataIntegrityViolationException e) {
             throw new CustomRuntimeException(ErrorMessageEnum.USER_EXIST);
         }
     }
     @Override
     public Iterable<UserDto> getAllUsers() {
-        return userMapper.entityListToDtoList(userRepository.findAll());
+
+        Iterable<UserEntity> entities = userRepository.findAll();
+        Iterable<UserDto>  userList =userMapper.entityListToDtoList(entities);
+
+        return userList;
     }
     @Override
     public Long deleteUser(Long id) {
+
         try {
             userRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -54,6 +65,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         UserEntity user = userRepository.findByEmail(email)
                 .orElseThrow( () -> new UsernameNotFoundException("User Not Found with -> email : " + email));
         return UserPrinciple.build(user);

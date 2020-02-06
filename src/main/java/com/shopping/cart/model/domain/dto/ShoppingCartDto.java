@@ -6,14 +6,14 @@ public class ShoppingCartDto implements Serializable {
 	private static final long serialVersionUID = 7547305298716063920L;
 
 	private Long id;
-	private Long userId;
-	private Long itemId;
+	private UserDto user;
+	private CartItemDto cartItem;
 
 	public ShoppingCartDto() { }
-	public ShoppingCartDto(Long id, Long userId, Long cartId) {
+	public ShoppingCartDto(Long id, UserDto user, CartItemDto cartItem) {
 		this.id = id;
-		this.userId = userId;
-		this.itemId = itemId;
+		this.user = user;
+		this.cartItem = cartItem;
 	}
 
 	public Long getId() {
@@ -23,17 +23,18 @@ public class ShoppingCartDto implements Serializable {
 		this.id = id;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public UserDto getUser() {
+		return user;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(UserDto user) {
+		this.user = user;
 	}
 
-	public Long getItemId() {
-		return itemId;
+	public CartItemDto getCartItem() {
+		return cartItem;
 	}
-	public void setItemId(Long itemId) {
-		this.itemId = itemId;
+	public void setCartItem(CartItemDto cartItem) {
+		this.cartItem = cartItem;
 	}
 }
+

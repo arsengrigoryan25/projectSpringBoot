@@ -2,18 +2,18 @@ package com.shopping.cart.security;
 
 // После успешной аутентификации возвращается сервером SpringBoot, он состоит из 2 частей:
 public class JwtResponse {
-    private String token;
+    private String jwtToken;
     private String type = "Bearer";
 
     public JwtResponse(String accessToken) {
-        this.token = accessToken;
+        this.jwtToken = accessToken;
     }
 
     public String getAccessToken() {
-        return token;
+        return jwtToken;
     }
     public void setAccessToken(String accessToken) {
-        this.token = accessToken;
+        this.jwtToken = accessToken;
     }
 
     public String getTokenType() {

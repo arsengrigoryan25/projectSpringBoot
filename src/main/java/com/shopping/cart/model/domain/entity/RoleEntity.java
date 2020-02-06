@@ -5,6 +5,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,17 +13,19 @@ import java.util.List;
 public class RoleEntity {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="name")
+    @Column(name = "name")
     @Enumerated(EnumType.STRING)
     private RoleName name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<UserEntity> users;
+    private List<UserEntity> users = new ArrayList<>();
 
-    public RoleEntity() { }
+    public RoleEntity() {
+    }
+
     public RoleEntity(RoleName name) {
         this.name = name;
     }
@@ -30,6 +33,7 @@ public class RoleEntity {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,6 +41,7 @@ public class RoleEntity {
     public RoleName getName() {
         return name;
     }
+
     public void setName(RoleName name) {
         this.name = name;
     }
@@ -44,6 +49,7 @@ public class RoleEntity {
     public List<UserEntity> getUsers() {
         return users;
     }
+
     public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
@@ -55,6 +61,7 @@ public class RoleEntity {
                 .append(name)
                 .toHashCode();
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

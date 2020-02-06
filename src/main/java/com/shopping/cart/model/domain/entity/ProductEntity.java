@@ -2,6 +2,7 @@ package com.shopping.cart.model.domain.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -9,7 +10,7 @@ import java.util.Set;
 public class ProductEntity {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
@@ -20,7 +21,10 @@ public class ProductEntity {
     private Integer countInStock;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<CartItemEntity> cartItem;
+    private Set<CartItemEntity> cartItem = new HashSet<>();
+
+    public ProductEntity() {
+    }
 
     public ProductEntity(String name, String type, Integer price, Date createdDate, Integer countInStock) {
         this.name = name;
@@ -29,6 +33,7 @@ public class ProductEntity {
         this.createdDate = createdDate;
         this.countInStock = countInStock;
     }
+
     public ProductEntity(String name, String type, Integer price, Date createdDate, Date updatedDate, Integer countInStock) {
         this.name = name;
         this.type = type;
@@ -41,6 +46,7 @@ public class ProductEntity {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,6 +54,7 @@ public class ProductEntity {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -55,6 +62,7 @@ public class ProductEntity {
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -62,6 +70,7 @@ public class ProductEntity {
     public Integer getPrice() {
         return price;
     }
+
     public void setPrice(Integer price) {
         this.price = price;
     }
@@ -69,6 +78,7 @@ public class ProductEntity {
     public Date getCreatedDate() {
         return createdDate;
     }
+
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
@@ -76,6 +86,7 @@ public class ProductEntity {
     public Date getUpdatedDate() {
         return updatedDate;
     }
+
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
@@ -83,6 +94,7 @@ public class ProductEntity {
     public Integer getCountInStock() {
         return countInStock;
     }
+
     public void setCountInStock(Integer countInStock) {
         this.countInStock = countInStock;
     }
@@ -90,6 +102,7 @@ public class ProductEntity {
     public Set<CartItemEntity> getCartItem() {
         return cartItem;
     }
+
     public void setCartItem(Set<CartItemEntity> cartItem) {
         this.cartItem = cartItem;
     }
