@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Iterable<UserDto> getAllUsers() {
 
         Iterable<UserEntity> entities = userRepository.findAll();
-        Iterable<UserDto>  userList =userMapper.entityListToDtoList(entities);
+        Iterable<UserDto>  userList = userMapper.entityListToDtoList(entities);
 
         return userList;
     }

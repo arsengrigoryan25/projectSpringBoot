@@ -29,6 +29,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
+        <!--menak ays dependancyin avelacnelov arden security-in ashxatuma u default username = user, isk password@ amen angam nora generacvum vor@ logeum erevuma Using generated security password: eb453736-c980-478f-a50c-27d6681325ea-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
